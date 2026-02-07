@@ -318,3 +318,12 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* Leadership section image */
+.leadership-img {
+  width: 100%;
+  max-width: 720px;
+  margin: 1.5rem auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.12);
+}
