@@ -1,3 +1,3 @@
 # ✨ Jesus Victory Center Website
 
-A modern, responsive church website made with 💞by dave 
+A church website repo made with 💞by dave 
