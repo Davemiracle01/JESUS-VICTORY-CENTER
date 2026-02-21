@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sermons | Jesus Victory Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Watch and be encouraged by sermons from Jesus Victory Center. Grow in faith, love, and thanksgiving through the Word of God." />
+  <meta name="theme-color" content="#1565C0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Fallback styles in case style.css isn't loaded — safe to remove if style.css covers these */
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .video-thumb iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Reveal animation fallback */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .reveal-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-cross">✦</span>
+      <span class="brand-text">Jesus Victory Center</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sermons.html" class="active">Sermons</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-give">Give</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="mobile-give">Give</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ PAGE HERO ═══════════════════════ -->
+<div class="page-hero">
+  <div class="container">
+    <p class="section-label" style="color:var(--gold-lt)">The Word</p>
+    <h1>Sermons &amp; Teachings</h1>
+    <p>"So then faith comes by hearing, and hearing by the word of God." — Romans 10:17</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+<main>
+  <section class="content-section">
+    <div class="container">
+
+      <a href="index.html" class="btn btn-primary back-btn">← Back to Home</a>
+
+      <div style="margin-bottom:3rem;text-align:center">
+        <p class="section-label center">Be Encouraged</p>
+        <h2 class="section-title center">Latest Messages</h2>
+        <p class="section-sub center">These messages are shared to help you grow in faith, love, and obedience to God.</p>
+      </div>
+
+      <!-- ── SERMONS GRID ── -->
+      <div class="sermons-grid">
+
+        <!-- Card 1 -->
+        <div class="sermon-card reveal-up" style="--delay:0s">
+          <div class="video-thumb">
+            <iframe
+              src="https://www.youtube.com/embed/j_Ej1FznzCo"
+              title="Knowing God Through Love"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="sermon-info">
+            <h3>Knowing God Through Love</h3>
+            <p>A powerful teaching on understanding God's nature through love and walking in Christ-like compassion.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="sermon-card reveal-up" style="--delay:0.1s">
+          <div class="video-thumb">
+            <iframe
+              src="https://www.youtube.com/embed/C70fVUZ_y3c"
+              title="Always Be Thankful"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="sermon-info">
+            <h3>Always Be Thankful</h3>
+            <p>A reminder to live a life of gratitude in every season, trusting God in all circumstances.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — FIX: removed duplicate h3/p that was inside this card -->
+        <div class="sermon-card reveal-up" style="--delay:0.2s">
+          <div class="video-thumb">
+            <iframe
+              src="https://www.youtube.com/embed/ae-3qJ9XdBo"
+              title="Calling Upon the Lord"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="sermon-info">
+            <h3>Calling Upon the Lord</h3>
+            <p>An encouraging message on prayer, dependence on God, and calling upon His name in times of need.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 — FIX: youtu.be share URL → proper /embed/ URL; updated delay -->
+        <div class="sermon-card reveal-up" style="--delay:0.3s">
+          <div class="video-thumb">
+            <iframe
+              src="https://www.youtube.com/embed/RoXhMf0QWRg"
+              title="Levels of Blessings"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="sermon-info">
+            <h3>Levels of Blessings</h3>
+            <p>A message on the different levels of blessings from God and how to position yourself to receive them.</p>
+          </div>
+        </div>
+
+      </div><!-- /.sermons-grid -->
+
+      <!-- ── SUBSCRIBE CTA ── -->
+      <div style="margin-top:4rem;background:var(--crimson-dk);border-radius:var(--radius-lg);padding:3rem;text-align:center;color:white">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:1rem">Never Miss a Message</h2>
+        <p style="opacity:0.85;margin-bottom:1.5rem">Subscribe to our YouTube channel for new sermons and teachings every week.</p>
+        <a href="https://youtube.com/@pererkarigih4282?si=7He7pURdYkmBLQta" target="_blank" rel="noopener" class="btn btn-light">Subscribe on YouTube →</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-cross">✦</span>
+        <span class="brand-text">Jesus Victory Center</span>
+        <p>A Christ-centered church in Nairobi, Kenya — transforming lives through the grace of Jesus.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Service Times</h4>
+        <p>Sunday: 7:30 AM – 1:00 PM</p>
+        <p>Wednesday: 5:00 – 7:00 PM</p>
+        <p>Thursday: 5:00 – 7:00 PM</p>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/cdn-cgi/l/email-protection#b4dec2d7ded1c7c1c7c2ddd7c0dbc6cdf4d3d9d5ddd89ad7dbd9"><span class="__cf_email__" data-cfemail="f19b87929b94828482879892859e8388b1969c90989ddf929e9c">[email&#160;protected]</span></a>
+        <a href="https://wa.me/254722830190">WhatsApp: +254 722 830 190</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Jesus Victory Center · All Rights Reserved · Nairobi, Kenya</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center."
+   target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- Scripts -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js" defer></script>
+<script>
+  // Year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Scroll-reveal fallback (works even without script.js)
+  (function () {
+    const els = document.querySelectorAll('.reveal-up');
+    if (!els.length) return;
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { observer.observe(el); });
+  })();
+
+  // Mobile hamburger fallback
+  (function () {
+    const btn = d
