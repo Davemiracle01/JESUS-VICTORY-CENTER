@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jesus Victory Center | Faith • Hope • Victory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jesus Victory Center — a Christ-centered church in Nairobi, Kenya. Where lives are transformed through the grace of Jesus Christ." />
+  <meta name="theme-color" content="#0D0705" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html" data-num="01">Home</a>
+  <a href="about.html" data-num="02">About</a>
+  <a href="sermons.html" data-num="03">Sermons</a>
+  <a href="contact.html" data-num="04">Contact</a>
+  <a href="contact.html" data-num="05" style="color:var(--gold)">Give</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-icon">✦</div>
+    <span class="brand-name">Jesus Victory Center</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="nav-give-btn">Give</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-rays"></div>
+  <canvas id="particles"></canvas>
+  <div class="hero-back-text">Victory</div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Welcome to</p>
+    <h1 class="hero-title">
+      Jesus Victory
+      <em>Center</em>
+    </h1>
+    <p class="hero-tagline">Faith &nbsp; Hope &nbsp; Victory</p>
+    <p class="hero-sub">A place of worship, prayer, and love — where lives are transformed through the grace of Jesus Christ.</p>
+    <div class="hero-ctas">
+      <a href="#welcome" class="btn btn-gold">You Are Welcome Here</a>
+      <a href="sermons.html" class="btn btn-outline">Watch Sermons →</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">13+</span>
+      <span class="hero-stat-label">Years of Ministry</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-label">Weekly Services</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">∞</span>
+      <span class="hero-stat-label">Lives Transformed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">NBI</span>
+      <span class="hero-stat-label">Nairobi, Kenya</span>
+    </div>
+  </div>
+</header>
+
+<!-- WELCOME -->
+<section class="welcome" id="welcome">
+  <div class="container">
+    <div class="welcome-grid">
+      <div>
+        <div class="section-eyebrow reveal left">Our Heart</div>
+        <h2 class="display dark reveal" style="--d:0.1s">A Family<br>United <em>in Christ</em></h2>
+        <p class="section-body dark reveal" style="--d:0.2s; margin: 1.5rem 0 1.2rem;">We are a Christ-centered church committed to worship, discipleship, and building a loving community rooted in the Word of God.</p>
+        <p class="section-body dark reveal" style="--d:0.25s; margin-bottom: 2rem;">Whether you are seeking hope, healing, or spiritual growth — our doors and hearts are open. Come exactly as you are.</p>
+        <a href="about.html" class="btn btn-crimson reveal" style="--d:0.3s">Discover Our Story</a>
+      </div>
+      <div class="reveal right" style="--d:0.15s; position:relative;">
+        <div class="editorial-num">01</div>
+        <div class="verse-block">
+          <span class="verse-q">"</span>
+          <p class="verse-text">I can do all things through Christ who strengthens me.</p>
+          <p class="verse-ref">Philippians 4:13</p>
+          <div class="verse-deco-circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-eyebrow centered">Join Us</div>
+      <h2 class="display" style="text-align:center; margin-bottom:0.5rem">Our <em>Service</em> Times</h2>
+      <p style="text-align:center; color:rgba(255,255,255,0.45); font-size:0.92rem; font-weight:300; margin-top:0.5rem">We'd love to see you there</p>
+    </div>
+
+    <div class="services-list reveal" style="--d:0.1s">
+      <div class="service-row">
+        <div class="service-num">01</div>
+        <div class="service-info">
+          <h3>Hour of Power</h3>
+          <p>Prayer & Intercessory — Begin your Sunday in God's presence</p>
+        </div>
+        <div class="service-time-badge">
+          <span class="service-day">Sunday</span>
+          <span class="service-time-text">7:30 – 9:00 AM</span>
+        </div>
+      </div>
+      <div class="service-row featured">
+        <div class="service-num">02</div>
+        <div class="service-info">
+          <h3>Second Service</h3>
+          <p>Powerful worship and the preaching of the Word</p>
+        </div>
+        <div class="service-time-badge">
+          <span class="service-day">Sunday</span>
+          <span class="service-time-text">9:00 – 10:30 AM</span>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">03</div>
+        <div class="service-info">
+          <h3>Third Service</h3>
+          <p>Full praise, worship and the Word for the whole family</p>
+        </div>
+        <div class="service-time-badge">
+          <span class="service-day">Sunday</span>
+          <span class="service-time-text">10:30 AM – 1:00 PM</span>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">04</div>
+        <div class="service-info">
+          <h3>Home Bible Churches</h3>
+          <p>Intimate Bible study in community</p>
+        </div>
+        <div class="service-time-badge">
+          <span class="service-day">Wednesday</span>
+          <span class="service-time-text">5:00 – 7:00 PM</span>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">05</div>
+        <div class="service-info">
+          <h3>Midweek Miracle Service</h3>
+          <p>Expect signs, wonders and the miraculous</p>
+        </div>
+        <div class="service-time-badge">
+          <span class="service-day">Thursday</span>
+          <span class="service-time-text">5:00 – 7:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <div>
+        <div class="section-eyebrow" style="color:var(--crimson)">Our Community</div>
+        <h2 class="display dark">Life in Our <em>Church</em></h2>
+      </div>
+      <p class="section-body dark">Moments of worship,<br>fellowship, and service.</p>
+    </div>
+    <div class="masonry reveal scale">
+      <div class="masonry-item m1"><img src="/images/img-1.jpg" alt="Church worship" loading="eager"></div>
+      <div class="masonry-item m2"><img src="/images/img-2.jpg" alt="Fellowship" loading="lazy"></div>
+      <div class="masonry-item m3"><img src="/images/img-3.jpg" alt="Prayer" loading="lazy"></div>
+      <div class="masonry-item m4"><img src="/images/img-4.jpg" alt="Service" loading="lazy"></div>
+      <div class="masonry-item m5"><img src="/images/img-5.jpg" alt="Choir" loading="lazy"></div>
+      <div class="masonry-item m6"><img src="/images/img-6.jpg" alt="Congregation" loading="lazy"></div>
+      <div class="masonry-item m7"><img src="/images/img-7.jpg" alt="Outreach" loading="lazy"></div>
+      <div class="masonry-item m8"><img src="/images/img-8.jpg" alt="Community" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Faith</span><span class="dot">·</span>
+    <span>Hope</span><span class="dot">·</span>
+    <span>Victory</span><span class="dot">·</span>
+    <span>Worship</span><span class="dot">·</span>
+    <span>Grace</span><span class="dot">·</span>
+    <span>Nairobi, Kenya</span><span class="dot">·</span>
+    <span>Jesus Victory Center</span><span class="dot">·</span>
+    <span>Faith</span><span class="dot">·</span>
+    <span>Hope</span><span class="dot">·</span>
+    <span>Victory</span><span class="dot">·</span>
+    <span>Worship</span><span class="dot">·</span>
+    <span>Grace</span><span class="dot">·</span>
+    <span>Nairobi, Kenya</span><span class="dot">·</span>
+    <span>Jesus Victory Center</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- SERMONS -->
+<section class="sermons">
+  <div class="container">
+    <div class="sermons-header reveal">
+      <div>
+        <div class="section-eyebrow">The Word</div>
+        <h2 class="display">Latest <em>Sermons</em></h2>
+      </div>
+      <div>
+        <p class="section-body" style="margin-bottom:1.5rem">"Faith comes by hearing, and hearing by the word of God." — Romans 10:17</p>
+        <a href="sermons.html" class="btn btn-outline">All Sermons →</a>
+      </div>
+    </div>
+    <div class="sermons-grid reveal" style="--d:0.1s">
+      <div class="sermon-item">
+        <div class="sermon-video">
+          <iframe src="https://www.youtube.com/embed/j_Ej1FznzCo" title="Knowing God Through Love" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="sermon-meta">
+          <span class="sermon-label">Message 01</span>
+          <div class="sermon-title">Knowing God Through Love</div>
+          <p class="sermon-desc">Understanding God's nature through love and walking in Christ-like compassion.</p>
+        </div>
+      </div>
+      <div class="sermon-item">
+        <div class="sermon-video">
+          <iframe src="https://www.youtube.com/embed/C70fVUZ_y3c" title="Always Be Thankful" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="sermon-meta">
+          <span class="sermon-label">Message 02</span>
+          <div class="sermon-title">Always Be Thankful</div>
+          <p class="sermon-desc">Living a life of gratitude in every season, trusting God in all circumstances.</p>
+        </div>
+      </div>
+      <div class="sermon-item">
+        <div class="sermon-video">
+          <iframe src="https://www.youtube.com/embed/ae-3qJ9XdBo" title="Calling Upon the Lord" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="sermon-meta">
+          <span class="sermon-label">Message 03</span>
+          <div class="sermon-title">Calling Upon the Lord</div>
+          <p class="sermon-desc">Prayer, dependence on God, and calling upon His name in times of need.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / GIVING -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text reveal left">
+        <div class="section-eyebrow" style="color:var(--gold-pale)">Ready?</div>
+        <h2 class="display">Take Your<br><em>Next Step</em></h2>
+        <p>Join us this Sunday — whether new to faith or a seasoned believer, you belong here. And if you'd like to support the ministry, every gift makes an eternal difference.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-gold">Get in Touch</a>
+          <a href="about.html" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+      <div class="cta-give-box reveal right" style="--d:0.15s">
+        <span class="give-icon-big">📱</span>
+        <span class="give-label">M-Pesa · Send Money</span>
+        <span class="give-number">0116 636 653</span>
+        <span class="give-sub">Available 24/7 from anywhere in Kenya</span>
+        <a href="about.html" class="btn btn-gold" style="width:100%; justify-content:center;">Get Directions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <div class="brand-icon-ft">✦</div>
+          <span class="footer-brand-name">Jesus Victory Center</span>
+        </div>
+        <p class="footer-tagline">A Christ-centered church in Nairobi, Kenya — transforming lives through the grace of Jesus Christ.</p>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
+          <a class="footer-social-link" href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
+          <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <p>Sun · 7:30 AM – 1:00 PM</p>
+        <p>Wed · 5:00 – 7:00 PM</p>
+        <p>Thu · 5:00 – 7:00 PM</p>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a>
+        <a href="https://wa.me/254722830190">+254 722 830 190</a>
+        <p>Nairobi, Kenya</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Jesus Victory Center · All Rights Reserved</p>
+      <span class="footer-love">Made with <span>♥</span> for the Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center." target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
