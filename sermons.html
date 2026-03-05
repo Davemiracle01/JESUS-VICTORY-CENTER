@@ -4,10 +4,10 @@
 <meta charset="UTF-8"/>
 <title>Sermons | Jesus Victory Center</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="theme-color" content="#130800"/>
+<meta name="theme-color" content="#0A1628"/>
 <meta name="description" content="Watch and listen to sermons and teachings from Jesus Victory Center, Nairobi, Kenya."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -41,6 +41,61 @@
   <a href="contact.html" data-num="10" style="color:var(--gold)">Give</a>
 </div>
 
+<!-- UNIVERSAL MENU OVERLAY -->
+<div class="umenu-overlay" id="umenuOverlay"></div>
+
+<!-- UNIVERSAL MENU PANEL -->
+<aside class="umenu-panel" id="umenuPanel" aria-label="Site navigation">
+  <div class="umenu-header">
+    <div class="umenu-brand">
+      <div class="umenu-brand-icon">✦</div>
+      <span>Jesus Victory Center</span>
+    </div>
+    <button class="umenu-close" id="umenuClose" aria-label="Close menu">✕</button>
+  </div>
+  <div class="umenu-body">
+    <div class="umenu-section">
+      <div class="umenu-section-label">Navigate</div>
+      <a href="index.html" class="umenu-row"><span class="umenu-row-icon">🏠</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="about.html" class="umenu-row"><span class="umenu-row-icon">✦</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">📍</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">→</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Ministries</div>
+      <a href="children.html" class="umenu-row"><span class="umenu-row-icon">🧒</span><div class="umenu-row-text"><span class="umenu-row-title">Children's Ministry</span><span class="umenu-row-desc">Nurturing young hearts in faith</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="worship.html" class="umenu-row"><span class="umenu-row-icon">🎵</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="daughters-of-zion.html" class="umenu-row"><span class="umenu-row-icon">👑</span><div class="umenu-row-text"><span class="umenu-row-title">Daughters of Zion</span><span class="umenu-row-desc">Women walking in purpose</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="youth-teens.html" class="umenu-row"><span class="umenu-row-icon">⚡</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="men-of-purpose.html" class="umenu-row"><span class="umenu-row-icon">🦁</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">→</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Service Times</div>
+      <div class="umenu-times">
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Hour of Power</span><span class="umenu-time-val">7:30 – 9:00 AM</span></div>
+        <div class="umenu-time-row featured"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Main Service</span><span class="umenu-time-val">9:00 – 10:30 AM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Third Service</span><span class="umenu-time-val">10:30 AM – 1:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Wednesday</span><span class="umenu-time-name">Home Bible</span><span class="umenu-time-val">5:00 – 7:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Thursday</span><span class="umenu-time-name">Miracle Service</span><span class="umenu-time-val">5:00 – 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Connect With Us</div>
+      <a href="https://wa.me/254722830190" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#25D366">💬</span><div class="umenu-row-text"><span class="umenu-row-title">WhatsApp</span><span class="umenu-row-desc">+254 722 830 190</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#FF0000">▶</span><div class="umenu-row-text"><span class="umenu-row-title">YouTube</span><span class="umenu-row-desc">Watch our sermons</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#1877F2">f</span><div class="umenu-row-text"><span class="umenu-row-title">Facebook</span><span class="umenu-row-desc">Join our community</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="mailto:jvcjesusvictory@gmail.com" class="umenu-row"><span class="umenu-row-icon">✉</span><div class="umenu-row-text"><span class="umenu-row-title">Email</span><span class="umenu-row-desc">jvcjesusvictory@gmail.com</span></div><span class="umenu-row-arrow">↗</span></a>
+    </div>
+  </div>
+  <div class="umenu-footer">
+    <div class="umenu-give">
+      <span class="umenu-give-label">Give via M-Pesa · Send Money</span>
+      <span class="umenu-give-number">0116 636 653</span>
+    </div>
+    <a href="contact.html" class="umenu-give-btn">Give Now →</a>
+  </div>
+</aside>
+
 <nav class="navbar scrolled" id="navbar">
   <a href="index.html" class="brand"><div class="brand-icon">✦</div><span class="brand-name">Jesus Victory Center</span></a>
   <div class="nav-links">
@@ -48,7 +103,7 @@
     <a href="sermons.html" class="active">Sermons</a><a href="contact.html">Contact</a>
     <a href="contact.html" class="nav-give-btn">Give</a>
   </div>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu"><span class="umenu-trigger-icon">☰</span><span class="umenu-trigger-label">Menu</span></button>
 </nav>
 
 <div class="page-hero">

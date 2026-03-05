@@ -32,24 +32,51 @@ document.querySelectorAll('[id="year"]').forEach(el => el.textContent = new Date
   upd();
 })();
 
-/* HAMBURGER / DRAWER */
+/* UNIVERSAL MENU */
 (function(){
-  const h = document.getElementById('hamburger');
-  const d = document.getElementById('drawer');
-  if(!h||!d) return;
-  let open=false;
-  const toggle = ()=>{
-    open=!open;
-    h.classList.toggle('open',open);
-    d.classList.toggle('open',open);
-    document.body.style.overflow = open?'hidden':'';
+  const trigger  = document.getElementById('umenuTrigger');
+  const panel    = document.getElementById('umenuPanel');
+  const overlay  = document.getElementById('umenuOverlay');
+  const closeBtn = document.getElementById('umenuClose');
+  if(!trigger||!panel||!overlay) return;
+
+  let open = false;
+
+  const openMenu = ()=>{
+    open = true;
+    panel.classList.add('active');
+    overlay.classList.add('active');
+    trigger.classList.add('open');
+    trigger.querySelector('.umenu-trigger-icon').textContent = '✕';
+    document.body.style.overflow = 'hidden';
   };
-  h.addEventListener('click', toggle);
-  d.querySelectorAll('a').forEach(a=> a.addEventListener('click',()=>{
-    if(open) toggle();
-  }));
-  document.addEventListener('click', e=>{
-    if(open && !d.contains(e.target) && !h.contains(e.target)) toggle();
+
+  const closeMenu = ()=>{
+    open = false;
+    panel.classList.remove('active');
+    overlay.classList.remove('active');
+    trigger.classList.remove('open');
+    trigger.querySelector('.umenu-trigger-icon').textContent = '☰';
+    document.body.style.overflow = '';
+  };
+
+  trigger.addEventListener('click', ()=> open ? closeMenu() : openMenu());
+  overlay.addEventListener('click', closeMenu);
+  if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+  /* Close on ESC */
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && open) closeMenu(); });
+
+  /* Close when a same-page link is clicked */
+  panel.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', closeMenu);
+  });
+
+  /* Mark active page */
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  panel.querySelectorAll('.umenu-row[href]').forEach(row=>{
+    const href = row.getAttribute('href').split('/').pop();
+    row.classList.toggle('active', href === path || (path==='' && href==='index.html'));
   });
 })();
 
@@ -141,7 +168,7 @@ document.querySelectorAll('[id="year"]').forEach(el => el.textContent = new Date
       const p=this.life/this.max;
       const fade=p<.12?p/.12:p>.82?(1-p)/.18:1;
       ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(212,132,26,${this.a*fade})`; ctx.fill();
+      ctx.fillStyle=`rgba(232,114,12,${this.a*fade})`; ctx.fill();
     }
   }
   for(let i=0;i<60;i++) motes.push(new Mote(true));
