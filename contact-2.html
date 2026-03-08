@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Contact | Jesus Victory Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#080C14"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+<style>
+  :root {
+    --ink: #080C14;
+    --ink-mid: #0D1421;
+    --ink-soft: #111927;
+    --gold: #C9A84C;
+    --gold-pale: #E8D5A3;
+    --gold-dim: rgba(201,168,76,.18);
+    --gold-glow: rgba(201,168,76,.08);
+    --white: #F5EFE0;
+    --muted: rgba(245,239,224,.38);
+    --faint: rgba(245,239,224,.12);
+    --crimson: #8B1A1A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── AMBIENT BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 85% 100%, rgba(139,26,26,.08) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(201,168,76,.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: .6;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform .1s, background .2s;
+    mix-blend-mode: normal;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,168,76,.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: all .18s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold), #E8D5A3);
+    z-index: 10000;
+    transition: width .1s linear;
+    box-shadow: 0 0 8px rgba(201,168,76,.6);
+  }
+
+  /* ── MINI MENU ── */
+  .mini-menu {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background: rgba(8,12,20,.88);
+    border: 1px solid rgba(201,168,76,.15);
+    backdrop-filter: blur(20px);
+    padding: .5rem .75rem;
+    border-radius: 100px;
+    z-index: 800;
+    box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(201,168,76,.05);
+  }
+  .mm-btn {
+    background: none; border: none; cursor: pointer;
+    color: rgba(245,239,224,.45);
+    font-family: 'Cinzel', serif;
+    font-size: .56rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .4rem .75rem;
+    border-radius: 100px;
+    display: flex; align-items: center; gap: .4rem;
+    transition: color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .mm-btn:hover, .mm-btn.active {
+    color: var(--gold);
+    background: rgba(201,168,76,.08);
+  }
+  .mm-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .6;
+  }
+  .mm-div {
+    width: 1px; height: 14px;
+    background: rgba(201,168,76,.12);
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2.5rem;
+    background: rgba(8,12,20,.75);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--faint);
+    transition: padding .3s;
+  }
+  .brand {
+    display: flex; align-items: center; gap: .7rem;
+    text-decoration: none; color: var(--white);
+  }
+  .brand-icon {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,168,76,.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; color: var(--gold);
+  }
+  .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(245,239,224,.5);
+    transition: color .2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-give-btn {
+    border: 1px solid rgba(201,168,76,.4) !important;
+    padding: .45rem 1.1rem;
+    border-radius: 2px;
+    color: var(--gold) !important;
+    transition: background .2s, color .2s !important;
+  }
+  .nav-give-btn:hover {
+    background: var(--gold) !important;
+    color: var(--ink) !important;
+  }
+  .umenu-trigger {
+    background: none; border: 1px solid var(--faint);
+    color: rgba(245,239,224,.6);
+    font-size: .8rem; cursor: pointer;
+    padding: .5rem .9rem;
+    border-radius: 3px;
+    display: flex; align-items: center; gap: .5rem;
+    transition: border-color .2s, color .2s;
+    font-family: 'Cinzel', serif;
+    letter-spacing: .1em;
+    font-size: .6rem;
+  }
+  .umenu-trigger:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative;
+    min-height: 52vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10rem 2rem 5rem;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(201,168,76,.1) 0%, transparent 70%);
+  }
+  .page-hero-line {
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(201,168,76,.4), transparent);
+    opacity: .3;
+  }
+  .page-hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: .62rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: .8rem;
+    margin-bottom: 1.3rem;
+    opacity: 0;
+    animation: fadeUp .8s .2s forwards;
+  }
+  .page-hero-eyebrow::before, .page-hero-eyebrow::after {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+    opacity: .5;
+  }
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp .9s .4s forwards;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--gold-pale);
+  }
+  .page-hero p {
+    margin-top: 1.2rem;
+    color: var(--muted);
+    font-size: .95rem;
+    max-width: 38ch;
+    opacity: 0;
+    animation: fadeUp .9s .6s forwards;
+  }
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    color: rgba(201,168,76,.4);
+    font-family: 'Cinzel', serif;
+    font-size: .52rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp .8s 1s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollDrop 1.8s 1.2s infinite;
+  }
+  @keyframes scrollDrop {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── BACK BTN ── */
+  .back-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: 'Cinzel', serif;
+    font-size: .6rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--faint);
+    padding: .55rem 1.1rem;
+    border-radius: 2px;
+    margin-bottom: 3.5rem;
+    transition: color .2s, border-color .2s;
+  }
+  .back-btn:hover { color: var(--gold); border-color: rgba(201,168,76,.3); }
+
+  /* ── CONTACT SECTION ── */
+  .contact-section {
+    position: relative; z-index: 1;
+    padding: clamp(3rem,6vw,5rem) 0 6rem;
+  }
+
+  /* ── SECTION EYEBROW ── */
+  .section-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: .58rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .7rem;
+  }
+  .section-eyebrow.centered { text-align: center; }
+
+  /* ── CONTACT GRID ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(201,168,76,.12);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1px;
+  }
+  .contact-col {
+    padding: 3rem 2.8rem;
+    position: relative;
+  }
+  .contact-col::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .contact-col.tinted {
+    background: rgba(201,168,76,.03);
+    border-left: 1px solid rgba(201,168,76,.1);
+  }
+
+  .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+  }
+  .display em { font-style: italic; color: var(--gold-pale); }
+
+  /* ── CONTACT INFO ROWS ── */
+  .ci-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.3rem;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid var(--faint);
+    border-radius: 3px;
+    background: rgba(255,255,255,.02);
+    transition: border-color .2s, background .2s;
+  }
+  .ci-row:hover {
+    border-color: rgba(201,168,76,.2);
+    background: rgba(201,168,76,.04);
+  }
+  .ci-row a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: .9rem;
+    transition: color .2s;
+    display: block;
+  }
+  .ci-row a:hover { color: var(--gold); }
+  .ci-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: .52rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .2rem;
+  }
+  .ci-sep {
+    height: 1px;
+    background: var(--faint);
+    margin: 1.5rem 0;
+  }
+  .ci-icon {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(201,168,76,.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  /* ── SOCIAL BTNS ── */
+  .social-btns { display: flex; gap: .7rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: 'Cinzel', serif;
+    font-size: .6rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: .75rem 1.5rem;
+    border-radius: 2px;
+    cursor: pointer;
+    border: none;
+    transition: all .25s;
+    position: relative; overflow: hidden;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.06);
+    transform: translateX(-100%);
+    transition: transform .3s;
+  }
+  .btn:hover::before { transform: translateX(0); }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), #a37c2e);
+    color: #0a0a0a;
+    font-weight: 600;
+  }
+  .btn-gold:hover { box-shadow: 0 8px 24px rgba(201,168,76,.35); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,.3);
+    color: var(--gold);
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,.06); }
+  .btn-fb {
+    background: rgba(24,119,242,.12);
+    border: 1px solid rgba(24,119,242,.25);
+    color: #6EA8FE;
+  }
+  .btn-fb:hover { background: rgba(24,119,242,.2); }
+  .btn-yt {
+    background: rgba(255,0,0,.08);
+    border: 1px solid rgba(255,0,0,.2);
+    color: #FF6B6B;
+  }
+  .btn-yt:hover { background: rgba(255,0,0,.15); }
+
+  /* ── MPESA BOX ── */
+  .mpesa-box {
+    background: linear-gradient(135deg, rgba(201,168,76,.1), rgba(201,168,76,.04));
+    border: 1px solid rgba(201,168,76,.25);
+    border-radius: 3px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .mpesa-box::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,.06) 0%, transparent 70%);
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .mpesa-number {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    margin-bottom: .4rem;
+    letter-spacing: .08em;
+  }
+  .give-in-person {
+    border: 1px solid rgba(201,168,76,.12);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 3px;
+    background: rgba(255,255,255,.02);
+  }
+  .scripture-note {
+    margin-top: 1.3rem;
+    font-style: italic;
+    color: rgba(245,239,224,.25);
+    font-size: .82rem;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    border: 1px solid rgba(201,168,76,.12);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    margin-bottom: 1px;
+    position: relative;
+  }
+  .form-inner {
+    background: rgba(201,168,76,.03);
+    padding: 3.5rem clamp(1.5rem,4vw,3rem);
+  }
+  .form-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,.3), transparent);
+  }
+  .form-header { text-align: center; margin-bottom: 2.5rem; }
+  .form-header p { color: rgba(245,239,224,.35); font-size: .88rem; margin-top: .5rem; }
+  .form-body { max-width: 700px; margin: 0 auto; }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .form-field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+  .form-field label {
+    font-family: 'Cinzel', serif;
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(201,168,76,.15);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: .9rem;
+    font-weight: 300;
+    padding: .85rem 1.1rem;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(245,239,224,.2); }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: rgba(201,168,76,.5);
+    background: rgba(201,168,76,.05);
+    box-shadow: 0 0 0 3px rgba(201,168,76,.06), inset 0 0 0 1px rgba(201,168,76,.08);
+  }
+  .form-field select option { background: #111927; }
+  .form-field textarea { resize: vertical; min-height: 120px; }
+  .send-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    font-size: .7rem;
+    letter-spacing: .18em;
+    margin-top: .5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .send-btn .btn-shine {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+    transition: left .5s;
+  }
+  .send-btn:hover .btn-shine { left: 150%; }
+  .form-note {
+    text-align: center;
+    font-size: .72rem;
+    color: rgba(201,168,76,.25);
+    margin-top: .8rem;
+    font-style: italic;
+  }
+
+  /* ── PRAYER SECTION ── */
+  .prayer-section {
+    border: 1px solid rgba(201,168,76,.12);
+    padding: 4.5rem 2rem;
+    text-align: center;
+    margin-top: 1px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(139,26,26,.03);
+  }
+  .prayer-section::before {
+    content: '✦';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 20rem;
+    color: rgba(201,168,76,.02);
+    pointer-events: none;
+    font-family: 'Cinzel', serif;
+  }
+  .prayer-section .display { font-size: clamp(2rem,4vw,3.2rem); margin-bottom: 1rem; }
+  .prayer-section p {
+    color: var(--muted);
+    max-width: 40ch;
+    margin: 0 auto 2.2rem;
+    font-size: .95rem;
+  }
+
+  /* ── SERVICE HOURS STRIP ── */
+  .hours-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap: 0;
+    border: 1px solid rgba(201,168,76,.12);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1px 0;
+  }
+  .hour-cell {
+    padding: 1.6rem 1.5rem;
+    border-right: 1px solid rgba(201,168,76,.08);
+    position: relative;
+    transition: background .2s;
+  }
+  .hour-cell:last-child { border-right: none; }
+  .hour-cell:hover { background: rgba(201,168,76,.04); }
+  .hour-cell.featured-hour {
+    background: rgba(201,168,76,.06);
+  }
+  .hour-cell.featured-hour::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .hour-day {
+    font-family: 'Cinzel', serif;
+    font-size: .52rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: .3rem;
+  }
+  .hour-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    display: block;
+    margin-bottom: .2rem;
+  }
+  .hour-time {
+    font-size: .78rem;
+    color: var(--muted);
+    display: block;
+  }
+
+  /* ── WA FLOAT ── */
+  .wa-float {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 1.5rem;
+    width: 52px; height: 52px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 700;
+    box-shadow: 0 4px 20px rgba(37,211,102,.35);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .wa-float:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(37,211,102,.5);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--faint);
+    padding: 4rem 0 2rem;
+    position: relative; z-index: 1;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand-logo { display: flex; align-items: center; gap: .6rem; margin-bottom: .8rem; }
+  .brand-icon-ft {
+    width: 28px; height: 28px;
+    border: 1px solid rgba(201,168,76,.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; color: var(--gold);
+  }
+  .footer-brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .footer-tagline { font-size: .82rem; color: rgba(245,239,224,.35); line-height: 1.6; max-width: 28ch; }
+  .footer-socials { display: flex; gap: .75rem; margin-top: 1.2rem; }
+  .footer-social-link {
+    font-family: 'Cinzel', serif;
+    font-size: .52rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--faint);
+    padding: .4rem .8rem;
+    border-radius: 100px;
+    transition: color .2s, border-color .2s;
+  }
+  .footer-social-link:hover { color: var(--gold); border-color: rgba(201,168,76,.3); }
+  .footer-col h4 {
+    font-family: 'Cinzel', serif;
+    font-size: .58rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-col a, .footer-col p {
+    display: block;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: .82rem;
+    margin-bottom: .5rem;
+    transition: color .2s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid var(--faint);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: .72rem; color: rgba(245,239,224,.25); }
+  .footer-love { font-size: .72rem; color: rgba(245,239,224,.25); }
+  .footer-love span { color: var(--crimson); }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s cubic-bezier(.25,1,.5,1), transform .7s cubic-bezier(.25,1,.5,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .navbar { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-col.tinted { border-left: none; border-top: 1px solid rgba(201,168,76,.1); }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .hours-strip { grid-template-columns: 1fr 1fr; }
+    .page-hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+    .mini-menu { padding: .4rem .5rem; gap: .15rem; }
+    .mm-btn .label { display: none; }
+    .mm-btn { padding: .4rem .5rem; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hours-strip { grid-template-columns: 1fr; }
+    .hour-cell { border-right: none; border-bottom: 1px solid rgba(201,168,76,.08); }
+    .hour-cell:last-child { border-bottom: none; }
+  }
+
+  /* ── UMENU (carry-over) ── */
+  .umenu-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 950; opacity: 0; pointer-events: none;
+    backdrop-filter: blur(4px); transition: opacity .3s;
+  }
+  .umenu-overlay.open { opacity: 1; pointer-events: all; }
+  .umenu-panel {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: min(420px, 92vw);
+    background: #0C1220;
+    border-left: 1px solid rgba(201,168,76,.12);
+    z-index: 960;
+    transform: translateX(100%);
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .umenu-panel.open { transform: translateX(0); }
+  .umenu-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 1.8rem;
+    border-bottom: 1px solid rgba(201,168,76,.08);
+    flex-shrink: 0;
+  }
+  .umenu-brand { display: flex; align-items: center; gap: .7rem; }
+  .umenu-brand-icon {
+    width: 30px; height: 30px;
+    border: 1px solid rgba(201,168,76,.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; color: var(--gold);
+  }
+  .umenu-brand span { font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .1em; color: var(--white); }
+  .umenu-close {
+    background: none; border: 1px solid rgba(201,168,76,.15);
+    color: var(--muted); cursor: pointer;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem; transition: all .2s;
+  }
+  .umenu-close:hover { border-color: var(--gold); color: var(--gold); }
+  .umenu-body { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
+  .umenu-section { margin-bottom: 1.5rem; }
+  .umenu-section-label {
+    font-family: 'Cinzel', serif; font-size: .5rem; letter-spacing: .25em;
+    text-transform: uppercase; color: rgba(201,168,76,.5);
+    padding-bottom: .6rem; margin-bottom: .4rem;
+    border-bottom: 1px solid rgba(201,168,76,.08);
+  }
+  .umenu-row {
+    display: flex; align-items: center; gap: .9rem;
+    padding: .8rem .6rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background .2s;
+    color: inherit;
+  }
+  .umenu-row:hover { background: rgba(201,168,76,.06); }
+  .umenu-row-icon { width: 28px; text-align: center; font-size: 1rem; flex-shrink: 0; }
+  .umenu-row-text { flex: 1; }
+  .umenu-row-title { display: block; font-size: .85rem; color: var(--white); margin-bottom: .1rem; }
+  .umenu-row-desc { display: block; font-size: .72rem; color: var(--muted); }
+  .umenu-row-arrow { color: var(--muted); font-size: .8rem; }
+  .umenu-times { display: flex; flex-direction: column; gap: .3rem; margin-top: .4rem; }
+  .umenu-time-row {
+    display: flex; align-items: center; gap: .8rem;
+    padding: .55rem .6rem; border-radius: 2px;
+    font-size: .8rem;
+  }
+  .umenu-time-row.featured { background: rgba(201,168,76,.07); border-left: 2px solid var(--gold); }
+  .umenu-time-day { font-family: 'Cinzel', serif; font-size: .52rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); width: 60px; flex-shrink: 0; }
+  .umenu-time-name { color: var(--white); flex: 1; }
+  .umenu-time-val { color: var(--muted); font-size: .78rem; }
+  .umenu-footer {
+    padding: 1.2rem 1.8rem;
+    border-top: 1px solid rgba(201,168,76,.08);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    flex-shrink: 0;
+  }
+  .umenu-give { display: flex; flex-direction: column; gap: .2rem; }
+  .umenu-give-label { font-size: .62rem; color: var(--muted); letter-spacing: .08em; }
+  .umenu-give-number { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); }
+  .umenu-give-btn {
+    background: linear-gradient(135deg, var(--gold), #a37c2e);
+    color: #0a0a0a;
+    font-family: 'Cinzel', serif;
+    font-size: .6rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    text-decoration: none;
+    padding: .65rem 1.2rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: box-shadow .2s;
+  }
+  .umenu-give-btn:hover { box-shadow: 0 4px 16px rgba(201,168,76,.4); }
+
+  /* Mobile drawer (carry-over for script.js compat) */
+  .mobile-drawer { display: none; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav class="mini-menu always" id="miniMenu">
+  <button class="mm-btn" data-target="index.html"><span class="mm-dot"></span><span class="label">Home</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn active" data-target="contact-info"><span class="mm-dot"></span><span class="label">Contact</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="details-form"><span class="mm-dot"></span><span class="label">Details</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="give-section"><span class="mm-dot"></span><span class="label">Give</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="prayer-section"><span class="mm-dot"></span><span class="label">Prayer</span></button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html" data-num="01">Home</a>
+  <a href="about.html" data-num="02">About</a>
+  <a href="sermons.html" data-num="03">Sermons</a>
+  <a href="contact.html" data-num="04">Contact</a>
+  <div class="drawer-sep"></div>
+  <div class="drawer-cat">Ministries</div>
+  <a href="children.html" data-num="05">Children</a>
+  <a href="worship.html" data-num="06">Worship</a>
+  <a href="daughters-of-zion.html" data-num="07">Daughters of Zion</a>
+  <a href="youth-teens.html" data-num="08">Youth &amp; Teens</a>
+  <a href="men-of-purpose.html" data-num="09">Men of Purpose</a>
+  <div class="drawer-sep"></div>
+  <a href="contact.html" data-num="10" style="color:var(--gold)">Give</a>
+</div>
+
+<div class="umenu-overlay" id="umenuOverlay"></div>
+
+<aside class="umenu-panel" id="umenuPanel" aria-label="Site navigation">
+  <div class="umenu-header">
+    <div class="umenu-brand">
+      <div class="umenu-brand-icon">✦</div>
+      <span>Jesus Victory Center</span>
+    </div>
+    <button class="umenu-close" id="umenuClose" aria-label="Close menu">✕</button>
+  </div>
+  <div class="umenu-body">
+    <div class="umenu-section">
+      <div class="umenu-section-label">Navigate</div>
+      <a href="index.html" class="umenu-row"><span class="umenu-row-icon">🏠</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="about.html" class="umenu-row"><span class="umenu-row-icon">✦</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">📍</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">→</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Ministries</div>
+      <a href="children.html" class="umenu-row"><span class="umenu-row-icon">🧒</span><div class="umenu-row-text"><span class="umenu-row-title">Children's Ministry</span><span class="umenu-row-desc">Nurturing young hearts in faith</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="worship.html" class="umenu-row"><span class="umenu-row-icon">🎵</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="daughters-of-zion.html" class="umenu-row"><span class="umenu-row-icon">👑</span><div class="umenu-row-text"><span class="umenu-row-title">Daughters of Zion</span><span class="umenu-row-desc">Women walking in purpose</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="youth-teens.html" class="umenu-row"><span class="umenu-row-icon">⚡</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="men-of-purpose.html" class="umenu-row"><span class="umenu-row-icon">🦁</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">→</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Service Times</div>
+      <div class="umenu-times">
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Hour of Power</span><span class="umenu-time-val">7:30 – 9:00 AM</span></div>
+        <div class="umenu-time-row featured"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Main Service</span><span class="umenu-time-val">9:00 – 10:30 AM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Third Service</span><span class="umenu-time-val">10:30 AM – 1:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Wednesday</span><span class="umenu-time-name">Home Bible</span><span class="umenu-time-val">5:00 – 7:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Thursday</span><span class="umenu-time-name">Miracle Service</span><span class="umenu-time-val">5:00 – 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Connect With Us</div>
+      <a href="https://wa.me/254722830190" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#25D366">💬</span><div class="umenu-row-text"><span class="umenu-row-title">WhatsApp</span><span class="umenu-row-desc">+254 722 830 190</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#FF0000">▶</span><div class="umenu-row-text"><span class="umenu-row-title">YouTube</span><span class="umenu-row-desc">Watch our sermons</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#1877F2">f</span><div class="umenu-row-text"><span class="umenu-row-title">Facebook</span><span class="umenu-row-desc">Join our community</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="mailto:jvcjesusvictory@gmail.com" class="umenu-row"><span class="umenu-row-icon">✉</span><div class="umenu-row-text"><span class="umenu-row-title">Email</span><span class="umenu-row-desc">jvcjesusvictory@gmail.com</span></div><span class="umenu-row-arrow">↗</span></a>
+    </div>
+  </div>
+  <div class="umenu-footer">
+    <div class="umenu-give">
+      <span class="umenu-give-label">Give via M-Pesa · Send Money</span>
+      <span class="umenu-give-number">0116 636 653</span>
+    </div>
+    <a href="contact.html" class="umenu-give-btn">Give Now →</a>
+  </div>
+</aside>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-icon">✦</div>
+    <span class="brand-name">Jesus Victory Center</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="contact.html" class="nav-give-btn">Give</a>
+  </div>
+  <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu">
+    <span class="umenu-trigger-icon">☰</span>
+    <span class="umenu-trigger-label">Menu</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-line"></div>
+  <span class="page-hero-eyebrow">Reach Out</span>
+  <h1>We'd Love to <em>Hear</em><br>From You</h1>
+  <p>Jesus Victory Center is a family — and family stays connected.</p>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<section class="contact-section">
+  <div class="container">
+    <a href="index.html" class="back-btn reveal">← Back to Home</a>
+
+    <!-- SERVICE HOURS STRIP -->
+    <div class="hours-strip reveal" style="margin-bottom:1px">
+      <div class="hour-cell">
+        <span class="hour-day">Sunday</span>
+        <span class="hour-name">Hour of Power</span>
+        <span class="hour-time">7:30 – 9:00 AM</span>
+      </div>
+      <div class="hour-cell featured-hour">
+        <span class="hour-day">Sunday</span>
+        <span class="hour-name">Main Service</span>
+        <span class="hour-time">9:00 – 10:30 AM</span>
+      </div>
+      <div class="hour-cell">
+        <span class="hour-day">Sunday</span>
+        <span class="hour-name">Third Service</span>
+        <span class="hour-time">10:30 AM – 1:00 PM</span>
+      </div>
+      <div class="hour-cell">
+        <span class="hour-day">Wednesday</span>
+        <span class="hour-name">Home Bible</span>
+        <span class="hour-time">5:00 – 7:00 PM</span>
+      </div>
+      <div class="hour-cell">
+        <span class="hour-day">Thursday</span>
+        <span class="hour-name">Miracle Service</span>
+        <span class="hour-time">5:00 – 7:00 PM</span>
+      </div>
+    </div>
+
+    <!-- CONTACT INFO + GIVE -->
+    <div class="contact-grid reveal" id="contact-info">
+      <div class="contact-col">
+        <div class="section-eyebrow">Reach Us</div>
+        <h2 class="display" style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:1.8rem">Contact<br><em>Information</em></h2>
+
+        <div class="ci-row">
+          <div class="ci-icon">📧</div>
+          <div>
+            <span class="ci-label">Email</span>
+            <a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">📱</div>
+          <div>
+            <span class="ci-label">WhatsApp</span>
+            <a href="https://wa.me/254722830190">+254 722 830 190</a>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">📍</div>
+          <div>
+            <span class="ci-label">Location</span>
+            <span style="color:var(--white);font-size:.9rem">Nairobi, Kenya</span>
+          </div>
+        </div>
+
+        <div class="ci-sep"></div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.1rem">Connect with our ministry online:</p>
+        <div class="social-btns">
+          <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="btn btn-fb">Facebook →</a>
+          <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="btn btn-yt">YouTube →</a>
+        </div>
+      </div>
+
+      <div class="contact-col tinted" id="give-section">
+        <div class="section-eyebrow">Support the Ministry</div>
+        <h2 class="display" style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:1.3rem">Give &amp; <em>Make a</em><br>Difference</h2>
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.8rem">Your generosity helps us continue sharing the Gospel and building lives in Christ.</p>
+
+        <div class="mpesa-box">
+          <span style="font-size:2rem;display:block;margin-bottom:.5rem;position:relative;z-index:1">📱</span>
+          <span style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;position:relative;z-index:1">M-Pesa · Send Money</span>
+          <span class="mpesa-number">0116 636 653</span>
+          <span style="font-size:.75rem;color:rgba(245,239,224,.35);display:block;position:relative;z-index:1">Available 24/7 · From anywhere in Kenya</span>
+        </div>
+
+        <div class="give-in-person">
+          <span style="font-size:1.6rem;display:block;margin-bottom:.4rem">🙏</span>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:.3rem">Give In Person</p>
+          <p style="font-size:.82rem;color:rgba(245,239,224,.35);font-weight:300">Join us any Sunday and give as led by the Spirit</p>
+        </div>
+
+        <p class="scripture-note">"God loves a cheerful giver." — 2 Corinthians 9:7</p>
+      </div>
+    </div>
+
+    <!-- DETAILS FORM -->
+    <div class="form-section reveal" id="details-form">
+      <div class="form-inner">
+        <div class="form-header">
+          <div class="section-eyebrow centered">Your Details</div>
+          <h2 class="display" style="font-size:clamp(1.6rem,3vw,2.4rem)">Fill In Your <em>Information</em></h2>
+          <p>Submit your details or prayer request — we'll reach out via WhatsApp.</p>
+        </div>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fname">Full Name</label>
+              <input type="text" id="fname" placeholder="Your full name…"/>
+            </div>
+            <div class="form-field">
+              <label for="fphone">Phone / WhatsApp</label>
+              <input type="tel" id="fphone" placeholder="+254…"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="faddress">Address / Area</label>
+              <input type="text" id="faddress" placeholder="Nairobi, Kenya…"/>
+            </div>
+            <div class="form-field">
+              <label for="fhomechurch">Home Church</label>
+              <input type="text" id="fhomechurch" placeholder="Your home church…"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="femail">Email (optional)</label>
+            <input type="email" id="femail" placeholder="your@email.com"/>
+          </div>
+          <div class="form-field">
+            <label for="fpurpose">I Would Like To</label>
+            <select id="fpurpose">
+              <option value="">— Please select —</option>
+              <option value="attend regularly">Attend regularly</option>
+              <option value="visit once">I am visiting</option>
+              <option value="get saved">I would like to get saved</option>
+              <option value="see the pastor">I would like to see the pastor</option>
+              <option value="submit a prayer request">Submit a prayer request</option>
+              <option value="join a ministry">Join a ministry</option>
+              <option value="general enquiry">General enquiry</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="fmessage">Message / Prayer Request</label>
+            <textarea id="fmessage" placeholder="Share your message, prayer request or anything on your heart…"></textarea>
+          </div>
+          <button class="btn btn-gold send-btn" id="sendWaBtn">
+            <div class="btn-shine"></div>
+            Send via WhatsApp →
+          </button>
+          <p class="form-note">This will open WhatsApp with your details pre-filled.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRAYER SECTION -->
+    <div class="prayer-section reveal" id="prayer-section">
+      <div class="section-eyebrow centered">Prayer</div>
+      <h2 class="display">Have a Prayer <em>Request?</em></h2>
+      <p>We believe in the power of prayer. Our team will pray with you and for you.</p>
+      <a href="https://wa.me/254722830190?text=Hello%2C%20I%20have%20a%20prayer%20request." target="_blank" rel="noopener" class="btn btn-gold">Send a Prayer Request →</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <div class="brand-icon-ft">✦</div>
+          <span class="footer-brand-name">Jesus Victory Center</span>
+        </div>
+        <p class="footer-tagline">A Christ-centered church in Nairobi, Kenya — transforming lives through the grace of Jesus Christ.</p>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
+          <a class="footer-social-link" href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
+          <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="worship.html">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="youth-teens.html">Youth &amp; Teens</a><a href="men-of-purpose.html">Men of Purpose</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Jesus Victory Center · All Rights Reserved</p>
+      <span class="footer-love">Made with <span>♥</span> for the Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="script.js"></script>
+<script>
+'use strict';
+
+/* ── Year ── */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── Custom cursor ── */
+const cur = document.getElementById('cursor');
+const curR = document.getElementById('cursorRing');
+if (cur && curR) {
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top = e.clientY + 'px';
+    curR.style.left = e.clientX + 'px';
+    curR.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button,input,select,textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => { curR.style.transform = 'translate(-50%,-50%) scale(1.6)'; cur.style.opacity = '0'; });
+    el.addEventListener('mouseleave', () => { curR.style.transform = 'translate(-50%,-50%) scale(1)'; cur.style.opacity = '1'; });
+  });
+}
+
+/* ── Progress bar ── */
+const pb = document.getElementById('progressBar');
+if (pb) {
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    pb.style.width = Math.min(pct, 100) + '%';
+  });
+}
+
+/* ── Reveal on scroll ── */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.08) + 's';
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObs.observe(el));
+
+/* ── Mini menu scroll ── */
+document.querySelectorAll('.mm-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const t = btn.dataset.target;
+    if (t && t.endsWith('.html')) { window.location.href = t; return; }
+    const el = document.getElementById(t);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.mm-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ── Universal menu ── */
+const overlay = document.getElementById('umenuOverlay');
+const panel = document.getElementById('umenuPanel');
+const trigger = document.getElementById('umenuTrigger');
+const closeBtn = document.getElementById('umenuClose');
+function openMenu() { overlay.classList.add('open'); panel.classList.add('open'); }
+function closeMenu() { overlay.classList.remove('open'); panel.classList.remove('open'); }
+if (trigger) trigger.addEventListener('click', openMenu);
+if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+if (overlay) overlay.addEventListener('click', closeMenu);
+
+/* ── WhatsApp form ── */
+document.getElementById('sendWaBtn').addEventListener('click', () => {
+  const n   = document.getElementById('fname').value.trim()       || 'Not provided';
+  const ph  = document.getElementById('fphone').value.trim()      || 'Not provided';
+  const addr= document.getElementById('faddress').value.trim()    || 'Not provided';
+  const hc  = document.getElementById('fhomechurch').value.trim() || 'Not provided';
+  const em  = document.getElementById('femail').value.trim()      || 'Not provided';
+  const pur = document.getElementById('fpurpose').value           || 'Not specified';
+  const msg = document.getElementById('fmessage').value.trim()    || 'No message';
+  const text = `Hello Jesus Victory Center 🙏\n\n*Name:* ${n}\n*Phone:* ${ph}\n*Address:* ${addr}\n*Home Church:* ${hc}\n*Email:* ${em}\n*Purpose:* ${pur}\n\n*Message / Prayer Request:*\n${msg}`;
+  window.open('https://wa.me/254722830190?text=' + encodeURIComponent(text), '_blank');
+});
+</script>
+</body>
+</html>
