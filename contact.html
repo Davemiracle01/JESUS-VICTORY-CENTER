@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Contact | Jesus Victory Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#0A1628"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav class="mini-menu always" id="miniMenu">
+  <button class="mm-btn" data-target="index.html"><span class="mm-dot"></span><span class="label">Home</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn active" data-target="contact-info"><span class="mm-dot"></span><span class="label">Contact</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="details-form"><span class="mm-dot"></span><span class="label">Details</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="give-section"><span class="mm-dot"></span><span class="label">Give</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="prayer-section"><span class="mm-dot"></span><span class="label">Prayer</span></button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html" data-num="01">Home</a>
+  <a href="about.html" data-num="02">About</a>
+  <a href="sermons.html" data-num="03">Sermons</a>
+  <a href="contact.html" data-num="04">Contact</a>
+  <div class="drawer-sep"></div>
+  <div class="drawer-cat">Ministries</div>
+  <a href="children.html" data-num="05">Children</a>
+  <a href="worship.html" data-num="06">Worship</a>
+  <a href="daughters-of-zion.html" data-num="07">Daughters of Zion</a>
+  <a href="youth-teens.html" data-num="08">Youth &amp; Teens</a>
+  <a href="men-of-purpose.html" data-num="09">Men of Purpose</a>
+  <div class="drawer-sep"></div>
+  <a href="contact.html" data-num="10" style="color:var(--gold)">Give</a>
+</div>
+
+<!-- UNIVERSAL MENU OVERLAY -->
+<div class="umenu-overlay" id="umenuOverlay"></div>
+
+<!-- UNIVERSAL MENU PANEL -->
+<aside class="umenu-panel" id="umenuPanel" aria-label="Site navigation">
+  <div class="umenu-header">
+    <div class="umenu-brand">
+      <div class="umenu-brand-icon">✦</div>
+      <span>Jesus Victory Center</span>
+    </div>
+    <button class="umenu-close" id="umenuClose" aria-label="Close menu">✕</button>
+  </div>
+  <div class="umenu-body">
+    <div class="umenu-section">
+      <div class="umenu-section-label">Navigate</div>
+      <a href="index.html" class="umenu-row"><span class="umenu-row-icon">🏠</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="about.html" class="umenu-row"><span class="umenu-row-icon">✦</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">📍</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">→</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Ministries</div>
+      <a href="children.html" class="umenu-row"><span class="umenu-row-icon">🧒</span><div class="umenu-row-text"><span class="umenu-row-title">Children's Ministry</span><span class="umenu-row-desc">Nurturing young hearts in faith</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="worship.html" class="umenu-row"><span class="umenu-row-icon">🎵</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="daughters-of-zion.html" class="umenu-row"><span class="umenu-row-icon">👑</span><div class="umenu-row-text"><span class="umenu-row-title">Daughters of Zion</span><span class="umenu-row-desc">Women walking in purpose</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="youth-teens.html" class="umenu-row"><span class="umenu-row-icon">⚡</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="men-of-purpose.html" class="umenu-row"><span class="umenu-row-icon">🦁</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">→</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Service Times</div>
+      <div class="umenu-times">
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Hour of Power</span><span class="umenu-time-val">7:30 – 9:00 AM</span></div>
+        <div class="umenu-time-row featured"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Main Service</span><span class="umenu-time-val">9:00 – 10:30 AM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Third Service</span><span class="umenu-time-val">10:30 AM – 1:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Wednesday</span><span class="umenu-time-name">Home Bible</span><span class="umenu-time-val">5:00 – 7:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Thursday</span><span class="umenu-time-name">Miracle Service</span><span class="umenu-time-val">5:00 – 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Connect With Us</div>
+      <a href="https://wa.me/254722830190" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#25D366">💬</span><div class="umenu-row-text"><span class="umenu-row-title">WhatsApp</span><span class="umenu-row-desc">+254 722 830 190</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#FF0000">▶</span><div class="umenu-row-text"><span class="umenu-row-title">YouTube</span><span class="umenu-row-desc">Watch our sermons</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#1877F2">f</span><div class="umenu-row-text"><span class="umenu-row-title">Facebook</span><span class="umenu-row-desc">Join our community</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="mailto:jvcjesusvictory@gmail.com" class="umenu-row"><span class="umenu-row-icon">✉</span><div class="umenu-row-text"><span class="umenu-row-title">Email</span><span class="umenu-row-desc">jvcjesusvictory@gmail.com</span></div><span class="umenu-row-arrow">↗</span></a>
+    </div>
+  </div>
+  <div class="umenu-footer">
+    <div class="umenu-give">
+      <span class="umenu-give-label">Give via M-Pesa · Send Money</span>
+      <span class="umenu-give-number">0116 636 653</span>
+    </div>
+    <a href="contact.html" class="umenu-give-btn">Give Now →</a>
+  </div>
+</aside>
+
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="brand"><div class="brand-icon">✦</div><span class="brand-name">Jesus Victory Center</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="sermons.html">Sermons</a><a href="contact.html" class="active">Contact</a>
+    <a href="contact.html" class="nav-give-btn">Give</a>
+  </div>
+  <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu"><span class="umenu-trigger-icon">☰</span><span class="umenu-trigger-label">Menu</span></button>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-eyebrow">Reach Out</span>
+  <h1>We'd Love to <em>Hear</em><br>From You</h1>
+  <p>Jesus Victory Center is a family — and family stays connected.</p>
+</div>
+
+<section class="contact-section">
+  <div class="container">
+    <a href="index.html" class="btn btn-outline back-btn">← Back to Home</a>
+
+    <!-- CONTACT INFO + GIVE -->
+    <div class="contact-grid reveal" id="contact-info">
+      <div class="contact-col">
+        <div class="section-eyebrow">Reach Us</div>
+        <h2 class="display" style="font-size:2.1rem;margin-bottom:1.8rem">Contact<br><em>Information</em></h2>
+        <div class="ci-row">
+          <span style="font-size:1.3rem">📧</span>
+          <div><span class="ci-label">Email</span><a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a></div>
+        </div>
+        <div class="ci-row">
+          <span style="font-size:1.3rem">📱</span>
+          <div><span class="ci-label">WhatsApp</span><a href="https://wa.me/254722830190">+254 722 830 190</a></div>
+        </div>
+        <div class="ci-sep"></div>
+        <p class="section-body" style="margin-bottom:1.3rem">Connect with our ministry online:</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="btn btn-crimson" style="padding:.7rem 1.4rem">Facebook</a>
+          <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="btn btn-outline" style="padding:.7rem 1.4rem">YouTube</a>
+        </div>
+      </div>
+      <div class="contact-col tinted" id="give-section">
+        <div class="section-eyebrow">Support the Ministry</div>
+        <h2 class="display" style="font-size:2.1rem;margin-bottom:1.3rem">Give &amp; <em>Make a</em><br>Difference</h2>
+        <p class="section-body" style="margin-bottom:2rem">Your generosity helps us continue sharing the Gospel and building lives in Christ.</p>
+        <div class="mpesa-box">
+          <span style="font-size:2.2rem;display:block;margin-bottom:.6rem">📱</span>
+          <span style="font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.6rem">M-Pesa · Send Money</span>
+          <span class="mpesa-number">0116 636 653</span>
+          <span style="font-size:.76rem;color:rgba(255,255,255,.38);display:block">Available 24/7 · From anywhere in Kenya</span>
+        </div>
+        <div style="border:1px solid rgba(212,132,26,.12);padding:1.5rem;text-align:center;border-radius:2px">
+          <span style="font-size:1.8rem;display:block;margin-bottom:.45rem">🙏</span>
+          <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:white;margin-bottom:.4rem">Give In Person</p>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.38);font-weight:300">Join us any Sunday and give as led by the Spirit</p>
+        </div>
+        <p style="margin-top:1.3rem;font-style:italic;color:rgba(255,255,255,.28);font-size:.82rem;text-align:center;font-family:'Playfair Display',serif">"God loves a cheerful giver." — 2 Corinthians 9:7</p>
+      </div>
+    </div>
+
+    <!-- DETAILS FORM — sends to WhatsApp -->
+    <div style="border:1px solid rgba(212,132,26,.12);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;margin-bottom:1px" class="reveal" id="details-form">
+      <div style="background:rgba(212,132,26,.06);padding:2.8rem 2.6rem">
+        <div class="section-eyebrow centered" style="margin-bottom:1rem">Your Details</div>
+        <h2 class="display" style="text-align:center;font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:.5rem">Fill In Your <em>Information</em></h2>
+        <p style="text-align:center;color:rgba(255,200,150,.4);font-size:.9rem;margin-bottom:2rem">Submit your details or prayer request — we'll reach out via WhatsApp.</p>
+        <div style="max-width:680px;margin:0 auto">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fname">Full Name</label>
+              <input type="text" id="fname" placeholder="Your full name…"/>
+            </div>
+            <div class="form-field">
+              <label for="fphone">Phone / WhatsApp</label>
+              <input type="tel" id="fphone" placeholder="+254…"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="faddress">Address / Area</label>
+              <input type="text" id="faddress" placeholder="Nairobi, Kenya…"/>
+            </div>
+            <div class="form-field">
+              <label for="fhomechurch">Home Church</label>
+              <input type="text" id="fhomechurch" placeholder="Your home church…"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="femail">Email (optional)</label>
+            <input type="email" id="femail" placeholder="your@email.com"/>
+          </div>
+          <div class="form-field">
+            <label for="fpurpose">I Would Like To</label>
+            <select id="fpurpose">
+              <option value="">— Please select —</option>
+              <option value="attend regularly">Attend regularly</option>
+              <option value="visit once">I am visiting</option>
+              <option value="get saved">I would like to get saved</option>
+              <option value="see the pastor">I would like to see the pastor</option>
+              <option value="submit a prayer request">Submit a prayer request</option>
+              <option value="join a ministry">Join a ministry</option>
+              <option value="general enquiry">General enquiry</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="fmessage">Message / Prayer Request</label>
+            <textarea id="fmessage" placeholder="Share your message, prayer request or anything on your heart…"></textarea>
+          </div>
+          <button class="btn btn-gold" id="sendWaBtn" style="width:100%;justify-content:center;font-size:.82rem">
+            Send via WhatsApp →
+          </button>
+          <p style="text-align:center;font-size:.75rem;color:rgba(255,200,150,.28);margin-top:.9rem">This will open WhatsApp with your details pre-filled.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRAYER REQUEST -->
+    <div style="border:1px solid rgba(212,132,26,.12);padding:3.5rem 2rem;text-align:center;margin-top:1px;border-radius:4px" class="reveal" id="prayer-section">
+      <div class="section-eyebrow centered">Prayer</div>
+      <h2 class="display" style="margin-bottom:.9rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">Have a Prayer <em>Request?</em></h2>
+      <p class="section-body" style="margin:0 auto 1.8rem;text-align:center;max-width:43ch">We believe in the power of prayer. Our team will pray with you and for you.</p>
+      <a href="https://wa.me/254722830190?text=Hello%2C%20I%20have%20a%20prayer%20request." target="_blank" rel="noopener" class="btn btn-gold">Send a Prayer Request →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo"><div class="brand-icon-ft">✦</div><span class="footer-brand-name">Jesus Victory Center</span></div>
+        <p class="footer-tagline">A Christ-centered church in Nairobi, Kenya — transforming lives through the grace of Jesus Christ.</p>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
+          <a class="footer-social-link" href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
+          <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="worship.html">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="youth-teens.html">Youth &amp; Teens</a><a href="men-of-purpose.html">Men of Purpose</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
+    </div>
+    <div class="footer-bottom"><p>© <span id="year"></span> Jesus Victory Center · All Rights Reserved</p><span class="footer-love">Made with <span>♥</span> for the Kingdom</span></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="script.js"></script>
+<script>
+document.getElementById('sendWaBtn').addEventListener('click',()=>{
+  const n=document.getElementById('fname').value.trim()||'Not provided';
+  const ph=document.getElementById('fphone').value.trim()||'Not provided';
+  const addr=document.getElementById('faddress').value.trim()||'Not provided';
+  const hc=document.getElementById('fhomechurch').value.trim()||'Not provided';
+  const em=document.getElementById('femail').value.trim()||'Not provided';
+  const pur=document.getElementById('fpurpose').value||'Not specified';
+  const msg=document.getElementById('fmessage').value.trim()||'No message';
+  const text=`Hello Jesus Victory Center 🙏\n\n*Name:* ${n}\n*Phone:* ${ph}\n*Address:* ${addr}\n*Home Church:* ${hc}\n*Email:* ${em}\n*Purpose:* ${pur}\n\n*Message / Prayer Request:*\n${msg}`;
+  window.open('https://wa.me/254722830190?text='+encodeURIComponent(text),'_blank');
+});
+</script>
+</body>
+                                                                                                                                                                                                                         </html>
