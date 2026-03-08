@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Sermons | Jesus Victory Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#0A1628"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Cinzel:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="style.css"/>
+<style>
+.video-wrapper{position:relative;width:100%;aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:#000;margin-top:.75rem}
+.video-wrapper iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
+.sermon-item{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease}
+.sermon-item:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.18)}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+.live-badge{display:inline-flex;align-items:center;gap:.3rem;background:linear-gradient(135deg,#e53e3e,#c53030);color:#fff;font-family:'Cinzel',serif;font-size:.58rem;font-weight:700;letter-spacing:.12em;padding:.22rem .5rem;border-radius:2px;margin-right:.4rem;box-shadow:0 0 8px rgba(229,62,62,.45)}
+.live-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#fff;animation:livePulse 1.4s infinite;flex-shrink:0}
+.new-badge{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--gold,#c9a84c),#a37c2e);color:#0a0a0a;font-family:'Cinzel',serif;font-size:.58rem;font-weight:700;letter-spacing:.12em;padding:.22rem .5rem;border-radius:2px;margin-right:.4rem}
+.sermons-stats-strip{display:flex;gap:2.5rem;align-items:center;padding:1.2rem 0 .5rem;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:1.8rem}
+.stat-pill{display:flex;flex-direction:column;gap:.15rem}
+.stat-pill .stat-num{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:var(--gold,#c9a84c);line-height:1}
+.stat-pill .stat-lbl{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.stat-div{width:1px;height:2rem;background:rgba(255,255,255,.12)}
+.sort-select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-family:'Cormorant Garamond',serif;font-size:.9rem;padding:.35rem .85rem .35rem .55rem;border-radius:3px;cursor:pointer;outline:none;transition:border-color .2s}
+.sort-select:focus{border-color:var(--gold,#c9a84c)}
+.sort-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.sermons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.8rem}
+.back-to-top{position:fixed;bottom:5.5rem;right:1.5rem;width:40px;height:40px;background:var(--gold,#c9a84c);color:#0a0a0a;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:900;box-shadow:0 4px 16px rgba(201,168,76,.35)}
+.back-to-top.visible{opacity:1;transform:translateY(0)}
+.featured-badge{background:linear-gradient(135deg,var(--gold,#c9a84c),#a37c2e)!important;box-shadow:0 0 12px rgba(201,168,76,.35)}
+@media(max-width:600px){.sermons-stats-strip{gap:1.2rem}.stat-pill .stat-num{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav class="mini-menu always" id="miniMenu">
+  <button class="mm-btn" data-target="index.html"><span class="mm-dot"></span><span class="label">Home</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn active" data-target="featured"><span class="mm-dot"></span><span class="label">Latest</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="all-sermons"><span class="mm-dot"></span><span class="label">All</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="subscribe-block"><span class="mm-dot"></span><span class="label">Subscribe</span></button>
+</nav>
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html" data-num="01">Home</a>
+  <a href="about.html" data-num="02">About</a>
+  <a href="sermons.html" data-num="03">Sermons</a>
+  <a href="contact.html" data-num="04">Contact</a>
+  <div class="drawer-sep"></div>
+  <div class="drawer-cat">Ministries</div>
+  <a href="children.html" data-num="05">Children</a>
+  <a href="worship.html" data-num="06">Worship</a>
+  <a href="daughters-of-zion.html" data-num="07">Daughters of Zion</a>
+  <a href="youth-teens.html" data-num="08">Youth &amp; Teens</a>
+  <a href="men-of-purpose.html" data-num="09">Men of Purpose</a>
+  <div class="drawer-sep"></div>
+  <a href="contact.html" data-num="10" style="color:var(--gold)">Give</a>
+</div>
+<div class="umenu-overlay" id="umenuOverlay"></div>
+<aside class="umenu-panel" id="umenuPanel" aria-label="Site navigation">
+  <div class="umenu-header">
+    <div class="umenu-brand"><div class="umenu-brand-icon">&#10022;</div><span>Jesus Victory Center</span></div>
+    <button class="umenu-close" id="umenuClose" aria-label="Close menu">&#10005;</button>
+  </div>
+  <div class="umenu-body">
+    <div class="umenu-section">
+      <div class="umenu-section-label">Navigate</div>
+      <a href="index.html" class="umenu-row"><span class="umenu-row-icon">&#127968;</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="about.html" class="umenu-row"><span class="umenu-row-icon">&#10022;</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">&#128214;</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">&#128205;</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Ministries</div>
+      <a href="children.html" class="umenu-row"><span class="umenu-row-icon">&#129306;</span><div class="umenu-row-text"><span class="umenu-row-title">Children's Ministry</span><span class="umenu-row-desc">Nurturing young hearts in faith</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="worship.html" class="umenu-row"><span class="umenu-row-icon">&#127925;</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="daughters-of-zion.html" class="umenu-row"><span class="umenu-row-icon">&#128081;</span><div class="umenu-row-text"><span class="umenu-row-title">Daughters of Zion</span><span class="umenu-row-desc">Women walking in purpose</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="youth-teens.html" class="umenu-row"><span class="umenu-row-icon">&#9889;</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="men-of-purpose.html" class="umenu-row"><span class="umenu-row-icon">&#129409;</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Service Times</div>
+      <div class="umenu-times">
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Hour of Power</span><span class="umenu-time-val">7:30 &#8211; 9:00 AM</span></div>
+        <div class="umenu-time-row featured"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Main Service</span><span class="umenu-time-val">9:00 &#8211; 10:30 AM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Third Service</span><span class="umenu-time-val">10:30 AM &#8211; 1:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Wednesday</span><span class="umenu-time-name">Home Bible</span><span class="umenu-time-val">5:00 &#8211; 7:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Thursday</span><span class="umenu-time-name">Miracle Service</span><span class="umenu-time-val">5:00 &#8211; 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Connect With Us</div>
+      <a href="https://wa.me/254722830190" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#25D366">&#128172;</span><div class="umenu-row-text"><span class="umenu-row-title">WhatsApp</span><span class="umenu-row-desc">+254 722 830 190</span></div><span class="umenu-row-arrow">&#8599;</span></a>
+      <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#FF0000">&#9654;</span><div class="umenu-row-text"><span class="umenu-row-title">YouTube</span><span class="umenu-row-desc">Watch our sermons</span></div><span class="umenu-row-arrow">&#8599;</span></a>
+      <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#1877F2">f</span><div class="umenu-row-text"><span class="umenu-row-title">Facebook</span><span class="umenu-row-desc">Join our community</span></div><span class="umenu-row-arrow">&#8599;</span></a>
+      <a href="/cdn-cgi/l/email-protection#375d41545d52444244415e544358454e77505a565e5b1954585a" class="umenu-row"><span class="umenu-row-icon">&#9993;</span><div class="umenu-row-text"><span class="umenu-row-title">Email</span><span class="umenu-row-desc"><span class="__cf_email__" data-cfemail="8be1fde8e1eef8fef8fde2e8ffe4f9f2cbece6eae2e7a5e8e4e6">[email&#160;protected]</span></span></div><span class="umenu-row-arrow">&#8599;</span></a>
+    </div>
+  </div>
+  <div class="umenu-footer">
+    <div class="umenu-give"><span class="umenu-give-label">Give via M-Pesa &#183; Send Money</span><span class="umenu-give-number">0116 636 653</span></div>
+    <a href="contact.html" class="umenu-give-btn">Give Now &#8594;</a>
+  </div>
+</aside>
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="brand"><div class="brand-icon">&#10022;</div><span class="brand-name">Jesus Victory Center</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="sermons.html" class="active">Sermons</a><a href="contact.html">Contact</a>
+    <a href="contact.html" class="nav-give-btn">Give</a>
+  </div>
+  <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu"><span class="umenu-trigger-icon">&#9776;</span><span class="umenu-trigger-label">Menu</span></button>
+</nav>
+<div class="page-hero">
+  <span class="page-hero-eyebrow">The Word</span>
+  <h1>Sermons &amp; <em>Teachings</em></h1>
+  <p>&#8220;So then faith comes by hearing, and hearing by the word of God.&#8221; &#8212; Romans 10:17</p>
+</div>
+<section style="padding:clamp(4rem,8vw,6.5rem) 0 2rem;background:var(--ink)">
+  <div class="container">
+    <a href="index.html" class="btn btn-outline back-btn">&#8592; Back to Home</a>
+    <div class="sermons-header reveal">
+      <div>
+        <div class="section-eyebrow">Be Encouraged</div>
+        <h2 class="display">Latest <em>Messages</em></h2>
+      </div>
+      <p class="section-body">These messages are shared to help you grow in faith, love and obedience to God.</p>
+    </div>
+    <div class="sermon-card reveal" id="featured">
+      <div class="video-thumb">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/BuSo0z8gITs" title="Hour of Power" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="sermon-info">
+        <h3><span class="featured-badge">Latest</span>Hour of Power</h3>
+        <p>An early-morning service broadcast live &#8212; encounter the living God and be transformed.</p>
+      </div>
+    </div>
+    <div class="sermons-stats-strip reveal">
+      <div class="stat-pill"><span class="stat-num">8</span><span class="stat-lbl">Messages</span></div>
+      <div class="stat-div"></div>
+      <div class="stat-pill"><span class="stat-num">3</span><span class="stat-lbl">Live Services</span></div>
+      <div class="stat-div"></div>
+      <div class="stat-pill"><span class="stat-num">4</span><span class="stat-lbl">Topics</span></div>
+    </div>
+    <div class="tab-bar reveal" style="margin-top:0" id="all-sermons">
+      <button class="tab-btn active" data-tab="all">All Messages <span class="count-badge" id="totalCount">7</span></button>
+      <button class="tab-btn" data-tab="faith">Faith</button>
+      <button class="tab-btn" data-tab="gratitude">Gratitude</button>
+      <button class="tab-btn" data-tab="prayer">Prayer</button>
+      <button class="tab-btn" data-tab="live">Live Services</button>
+    </div>
+    <div style="margin-top:1.3rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center" class="reveal">
+      <div class="search-bar" style="flex:1;min-width:200px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search messages&#8230;" autocomplete="off"/>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <span class="sort-label">Sort</span>
+        <select class="sort-select" id="sortSelect">
+          <option value="default">Default</option>
+          <option value="az">A to Z</option>
+          <option value="za">Z to A</option>
+        </select>
+      </div>
+    </div>
+    <div class="sermons-grid reveal" id="sermonsGrid" style="margin-top:1.8rem">
+      <div class="sermon-item" data-tags="faith love" data-title="Knowing God Through Love">
+        <div class="sermon-meta"><span class="sermon-label">Message 01</span><div class="sermon-title">Knowing God Through Love</div><p class="sermon-desc">Understanding God's nature through love and walking in Christ-like compassion.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/j_Ej1FznzCo" title="Knowing God Through Love" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="sermon-item" data-tags="gratitude faith" data-title="Always Be Thankful">
+        <div class="sermon-meta"><span class="sermon-label">Message 02</span><div class="sermon-title">Always Be Thankful</div><p class="sermon-desc">A reminder to live a life of gratitude in every season, trusting God in all circumstances.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/C70fVUZ_y3c" title="Always Be Thankful" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="sermon-item" data-tags="prayer faith" data-title="Calling Upon the Lord">
+        <div class="sermon-meta"><span class="sermon-label">Message 03</span><div class="sermon-title">Calling Upon the Lord</div><p class="sermon-desc">Prayer, dependence on God, and calling upon His name in times of need.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ae-3qJ9XdBo" title="Calling Upon the Lord" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="sermon-item" data-tags="faith" data-title="Walking in the Spirit">
+        <div class="sermon-meta"><span class="sermon-label">Message 04</span><div class="sermon-title"><span class="new-badge">New</span>Walking in the Spirit</div><p class="sermon-desc">Discovering what it means to live daily by the leading of the Holy Spirit and bear Kingdom fruit.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Mv3QF2V5uEc" title="Walking in the Spirit" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="sermon-item" data-tags="live faith prayer" data-title="Sunday Worship Service">
+        <div class="sermon-meta"><span class="sermon-label">Message 05</span><div class="sermon-title"><span class="live-badge">Live</span><span class="new-badge">New</span>Sunday Worship Service</div><p class="sermon-desc">A full Sunday service broadcast live from Jesus Victory Center &#8212; praise, worship and the Word.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vysOUI5cbWs" title="Sunday Worship Service" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="sermon-item" data-tags="live gratitude faith" data-title="Miracle Thursday Service">
+        <div class="sermon-meta"><span class="sermon-label">Message 06</span><div class="sermon-title"><span class="live-badge">Live</span><span class="new-badge">New</span>Miracle Thursday Service</div><p class="sermon-desc">Join us for our Miracle Thursday service &#8212; a powerful time of prayer, faith and breakthroughs.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2tQOaTRS_5M" title="Miracle Thursday Service" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="sermon-item" data-tags="live prayer faith" data-title="Hour of Power">
+        <div class="sermon-meta"><span class="sermon-label">Message 07</span><div class="sermon-title"><span class="live-badge">Live</span><span class="new-badge">New</span>Hour of Power</div><p class="sermon-desc">An early-morning service broadcast live &#8212; encounter the living God and be transformed.</p></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/BuSo0z8gITs" title="Hour of Power" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+    <div class="empty-state" id="emptyState" style="display:none"><span>&#10022;</span>No messages match your search.</div>
+    <div class="subscribe-block reveal" id="subscribe-block">
+      <div class="section-eyebrow centered">Never Miss a Message</div>
+      <h2>Subscribe on <em>YouTube</em></h2>
+      <p>New sermons and teachings posted regularly. Be the first to be blessed.</p>
+      <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="btn btn-gold">Subscribe Now &#8594;</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo"><div class="brand-icon-ft">&#10022;</div><span class="footer-brand-name">Jesus Victory Center</span></div>
+        <p class="footer-tagline">A Christ-centered church in Nairobi, Kenya &#8212; transforming lives through the grace of Jesus Christ.</p>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
+          <a class="footer-social-link" href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
+          <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="worship.html">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="youth-teens.html">Youth &amp; Teens</a><a href="men-of-purpose.html">Men of Purpose</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="/cdn-cgi/l/email-protection#ee84988d848b9d9b9d98878d9a819c97ae89838f8782c08d8183"><span class="__cf_email__" data-cfemail="137965707976606660657a70677c616a53747e727a7f3d707c7e">[email&#160;protected]</span></a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
+    </div>
+    <div class="footer-bottom"><p>&#169; <span id="year"></span> Jesus Victory Center &#183; All Rights Reserved</p><span class="footer-love">Made with <span>&#9829;</span> for the Kingdom</span></div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script>
+'use strict';
+const tabBtns=document.querySelectorAll('.tab-btn');
+const items=Array.from(document.querySelectorAll('#sermonsGrid .sermon-item'));
+let activeTag='all';
+function filter(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
+  const sort=document.getElementById('sortSelect').value;
+  let visible=items.filter(i=>{
+    const tags=i.dataset.tags||'';
+    const title=(i.querySelector('.sermon-title')||{}).textContent||'';
+    const desc=(i.querySelector('.sermon-desc')||{}).textContent||'';
+    return(activeTag==='all'||tags.split(' ').includes(activeTag))&&(!q||title.toLowerCase().includes(q)||desc.toLowerCase().includes(q));
+  });
+  if(sort==='az')visible=[...visible].sort((a,b)=>(a.dataset.title||'').localeCompare(b.dataset.title||''));
+  if(sort==='za')visible=[...visible].sort((a,b)=>(b.dataset.title||'').localeCompare(a.dataset.title||''));
+  items.forEach(i=>i.style.display='none');
+  visible.forEach((i,idx)=>{i.style.display='';i.style.order=idx;});
+  document.getElementById('totalCount').textContent=visible.length+1;
+  document.getElementById('emptyState').style.display=visible.length?'none':'block';
+}
+tabBtns.forEach(b=>b.addEventListener('click',()=>{
+  tabBtns.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  activeTag=b.dataset.tab;
+  filter();
+}));
+document.getElementById('searchInput').addEventListener('input',filter);
+document.getElementById('sortSelect').addEventListener('
