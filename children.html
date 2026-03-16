@@ -5,341 +5,306 @@
 <title>Children's Ministry | Jesus Victory Center</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="theme-color" content="#0A1628"/>
-<meta name="description" content="Nurturing young hearts in faith, love and the living Word of God at Jesus Victory Center, Nairobi."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"/>
 <style>
-/* ─── PAGE HERO ─────────────────────────────────── */
+
+/* ── HERO ──────────────────────────────────────────────────── */
 .ministry-page-hero {
-  background: linear-gradient(155deg, #3d1500 0%, #2a0a00 55%, var(--ink,#0A1628) 100%);
+  background: linear-gradient(155deg, #3d1500 0%, #2a0a00 55%, #0A1628 100%);
 }
 
-/* ─── GALLERY SECTION ───────────────────────────── */
-.gallery-section {
-  background: #0d0d0d;
-  padding: 5rem 0 6rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.gallery-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(200,100,30,.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,180,50,.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.gallery-section .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.gallery-header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.gallery-header .eyebrow {
-  display: inline-block;
-  font-family: 'Cinzel', serif;
-  font-size: .72rem;
-  letter-spacing: .22em;
-  color: #c87820;
-  text-transform: uppercase;
-  margin-bottom: .9rem;
-}
-
-.gallery-header h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.1;
-  margin: 0 0 .8rem;
-}
-
-.gallery-header h2 em {
-  color: #e8a73c;
-  font-style: italic;
-}
-
-.gallery-header p {
-  color: rgba(255,255,255,.55);
-  font-family: 'Inter', sans-serif;
-  font-size: .95rem;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ─── MASONRY GRID ──────────────────────────────── */
-.photo-grid {
-  columns: 3;
-  column-gap: 1rem;
-}
-
-@media (max-width: 900px) { .photo-grid { columns: 2; } }
-@media (max-width: 560px) { .photo-grid { columns: 1; } }
-
-.photo-item {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #1a1a1a;
-}
-
-.photo-item img {
-  width: 100%;
-  display: block;
-  transition: transform .5s cubic-bezier(.25,.46,.45,.94), filter .4s;
-  filter: brightness(.92) saturate(.9);
-}
-
-.photo-item:hover img {
-  transform: scale(1.04);
-  filter: brightness(1) saturate(1.1);
-}
-
-.photo-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity .35s;
-  display: flex;
-  align-items: flex-end;
-  padding: 1rem;
-}
-
-.photo-item:hover .photo-overlay {
-  opacity: 1;
-}
-
-.photo-overlay span {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: .95rem;
-  color: rgba(255,255,255,.85);
-}
-
-/* ─── LIGHTBOX ──────────────────────────────────── */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s;
-  backdrop-filter: blur(6px);
-}
-
-.lightbox.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.lightbox img {
-  max-width: min(90vw, 900px);
-  max-height: 88vh;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 30px 80px rgba(0,0,0,.6);
-  transition: transform .3s;
-}
-
-.lb-close {
-  position: absolute;
-  top: 1.2rem; right: 1.4rem;
-  background: none; border: none;
-  color: rgba(255,255,255,.7);
-  font-size: 2rem;
-  cursor: pointer;
-  line-height: 1;
-  transition: color .2s;
-}
-.lb-close:hover { color: #fff; }
-
-.lb-prev, .lb-next {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.15);
-  color: #fff;
-  font-size: 1.5rem;
-  width: 3rem; height: 3rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s;
-}
-.lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.18); }
-.lb-prev { left: 1rem; }
-.lb-next { right: 1rem; }
-
-.lb-counter {
-  position: absolute;
-  bottom: 1.2rem; left: 50%; transform: translateX(-50%);
-  font-family: 'Inter', sans-serif;
-  font-size: .78rem;
-  color: rgba(255,255,255,.45);
-  letter-spacing: .1em;
-}
-
-/* ─── STATS STRIP ───────────────────────────────── */
+/* ── STATS STRIP ───────────────────────────────────────────── */
 .stats-strip {
-  background: linear-gradient(90deg, #1a0a00, #0d0d0d, #1a0a00);
-  border-top: 1px solid rgba(200,120,32,.15);
-  border-bottom: 1px solid rgba(200,120,32,.15);
-  padding: 2.4rem 0;
+  background: #100800;
+  border-top: 1px solid rgba(200,120,32,.2);
+  border-bottom: 1px solid rgba(200,120,32,.2);
+  padding: 2rem 0;
 }
-
 .stats-inner {
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
   justify-content: space-around;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
 }
-
-.stat-item {
-  text-align: center;
-}
-
+.stat-item { text-align: center; }
 .stat-num {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 700;
   color: #e8a73c;
   line-height: 1;
 }
-
 .stat-label {
   display: block;
   font-family: 'Inter', sans-serif;
-  font-size: .75rem;
+  font-size: .72rem;
   letter-spacing: .18em;
   color: rgba(255,255,255,.4);
   text-transform: uppercase;
-  margin-top: .4rem;
+  margin-top: .35rem;
 }
 
-/* ─── VERSE DECORATION ──────────────────────────── */
+/* ── ACTIVITIES ────────────────────────────────────────────── */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.act-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 1.5rem 1.2rem;
+  transition: background .3s, border-color .3s, transform .3s;
+}
+.act-card:hover {
+  background: rgba(200,120,32,.09);
+  border-color: rgba(200,120,32,.3);
+  transform: translateY(-3px);
+}
+.act-card span { font-size: 1.8rem; display: block; margin-bottom: .6rem; }
+.act-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  color: #e8a73c;
+  margin: 0 0 .4rem;
+  text-transform: uppercase;
+}
+.act-card p {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── VERSE ─────────────────────────────────────────────────── */
 .verse-deco {
   text-align: center;
-  padding: 4rem 1.5rem;
-  background: var(--ink, #0A1628);
+  padding: 3.5rem 1.5rem;
+  background: #0A1628;
   position: relative;
 }
-
 .verse-deco::before {
   content: '"';
   position: absolute;
-  top: .5rem; left: 50%; transform: translateX(-50%);
+  top: -.5rem; left: 50%; transform: translateX(-50%);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 10rem;
+  font-size: 9rem;
   color: rgba(200,120,32,.06);
   line-height: 1;
   pointer-events: none;
 }
-
 .verse-deco blockquote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
   font-style: italic;
   color: rgba(255,255,255,.85);
-  max-width: 650px;
-  margin: 0 auto 1rem;
+  max-width: 620px;
+  margin: 0 auto .8rem;
   line-height: 1.55;
 }
-
 .verse-deco cite {
   font-family: 'Cinzel', serif;
-  font-size: .72rem;
+  font-size: .7rem;
   letter-spacing: .2em;
   color: #c87820;
   text-transform: uppercase;
 }
 
-/* ─── SCROLL REVEAL ─────────────────────────────── */
+/* ── ALBUM SECTION ─────────────────────────────────────────── */
+.album-section {
+  background: #0d0d0d;
+  padding: 5rem 0 6rem;
+}
+.album-section .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.album-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.album-header .eyebrow {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: .7rem;
+  letter-spacing: .22em;
+  color: #c87820;
+  text-transform: uppercase;
+  margin-bottom: .8rem;
+}
+.album-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+}
+.album-header h2 em { color: #e8a73c; font-style: italic; }
+
+/* ── SLIDER ────────────────────────────────────────────────── */
+.slider-wrap { position: relative; width: 100%; }
+
+.slider-main {
+  position: relative;
+  width: 100%;
+  background: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,.65);
+  /* Fixed height with object-fit keeps images fully visible */
+  height: 520px;
+}
+@media (max-width: 768px) { .slider-main { height: 340px; } }
+@media (max-width: 480px) { .slider-main { height: 260px; } }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .55s ease;
+  pointer-events: none;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* contain = whole image always visible */
+  display: block;
+  background: #111;
+}
+.slide-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, transparent 100%);
+  padding: 2rem 1.4rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(255,255,255,.85);
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1;
+}
+.slider-arrow:hover { background: rgba(200,120,32,.65); border-color: #e8a73c; }
+.slider-arrow.prev { left: .7rem; }
+.slider-arrow.next { right: .7rem; }
+@media (max-width: 480px) {
+  .slider-arrow { width: 36px; height: 36px; font-size: 1.2rem; }
+}
+
+/* Counter */
+.slider-counter {
+  position: absolute;
+  top: .75rem; right: 1rem;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 20px;
+  padding: .22rem .7rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .06em;
+  z-index: 10;
+}
+
+/* Dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  margin-top: 1.1rem;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  border: none;
+  cursor: pointer;
+  transition: background .25s, transform .25s;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+}
+.dot.active { background: #e8a73c; transform: scale(1.35); }
+
+/* Thumbnails */
+.slider-thumbs {
+  display: flex;
+  gap: .6rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding-bottom: .4rem;
+  scrollbar-width: thin;
+  scrollbar-color: #3a2800 transparent;
+}
+.slider-thumbs::-webkit-scrollbar { height: 4px; }
+.slider-thumbs::-webkit-scrollbar-thumb { background: #3a2800; border-radius: 2px; }
+
+.thumb {
+  flex: 0 0 86px;
+  height: 60px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color .25s, opacity .25s;
+  opacity: .45;
+}
+.thumb.active { border-color: #e8a73c; opacity: 1; }
+.thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+@media (max-width: 480px) {
+  .thumb { flex: 0 0 64px; height: 46px; }
+}
+
+/* ── REVEAL ────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
   transition: opacity .7s ease, transform .7s ease;
   transition-delay: var(--d, 0s);
 }
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* ─── ACTIVITIES GRID (improved) ───────────────────*/
-.activities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-}
-
-.act-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 8px;
-  padding: 1.6rem 1.4rem;
-  transition: background .3s, border-color .3s, transform .3s;
-}
-
-.act-card:hover {
-  background: rgba(200,120,32,.08);
-  border-color: rgba(200,120,32,.25);
-  transform: translateY(-3px);
-}
-
-.act-card span {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: .7rem;
-}
-
-.act-card h4 {
-  font-family: 'Cinzel', serif;
-  font-size: .85rem;
-  letter-spacing: .12em;
-  color: #e8a73c;
-  margin: 0 0 .5rem;
-  text-transform: uppercase;
-}
-
-.act-card p {
-  font-family: 'Inter', sans-serif;
-  font-size: .875rem;
-  color: rgba(255,255,255,.55);
-  line-height: 1.6;
-  margin: 0;
-}
+.reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<!-- ─── CURSOR ─── -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- ─── MINI NAV ─── -->
 <nav class="mini-menu always" id="miniMenu">
   <button class="mm-btn" data-target="index.html"><span class="mm-dot"></span><span class="label">Home</span></button>
   <div class="mm-div"></div>
@@ -356,7 +321,6 @@
   <button class="mm-btn" data-target="contact.html"><span class="mm-dot"></span><span class="label">Join Us</span></button>
 </nav>
 
-<!-- ─── MOBILE DRAWER ─── -->
 <div class="mobile-drawer" id="drawer">
   <a href="index.html" data-num="01">Home</a>
   <a href="about.html" data-num="02">About</a>
@@ -373,16 +337,10 @@
   <a href="contact.html" data-num="10" style="color:var(--gold)">Give</a>
 </div>
 
-<!-- ─── MENU OVERLAY ─── -->
 <div class="umenu-overlay" id="umenuOverlay"></div>
-
-<!-- ─── MENU PANEL ─── -->
 <aside class="umenu-panel" id="umenuPanel" aria-label="Site navigation">
   <div class="umenu-header">
-    <div class="umenu-brand">
-      <div class="umenu-brand-icon">✦</div>
-      <span>Jesus Victory Center</span>
-    </div>
+    <div class="umenu-brand"><div class="umenu-brand-icon">✦</div><span>Jesus Victory Center</span></div>
     <button class="umenu-close" id="umenuClose" aria-label="Close menu">✕</button>
   </div>
   <div class="umenu-body">
@@ -428,7 +386,6 @@
   </div>
 </aside>
 
-<!-- ─── NAVBAR ─── -->
 <nav class="navbar scrolled" id="navbar">
   <a href="index.html" class="brand"><div class="brand-icon">✦</div><span class="brand-name">Jesus Victory Center</span></a>
   <div class="nav-links">
@@ -439,7 +396,7 @@
   <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu"><span class="umenu-trigger-icon">☰</span><span class="umenu-trigger-label">Menu</span></button>
 </nav>
 
-<!-- ─── HERO ─── -->
+<!-- HERO -->
 <div class="ministry-page-hero page-hero">
   <span class="page-hero-eyebrow">Jesus Victory Center</span>
   <span class="min-pg-icon">🧒</span>
@@ -447,38 +404,24 @@
   <p>Nurturing young hearts in faith, love and the living Word of God.</p>
 </div>
 
-<!-- ─── STATS STRIP ─── -->
+<!-- STATS -->
 <div class="stats-strip">
   <div class="stats-inner">
-    <div class="stat-item">
-      <span class="stat-num">50+</span>
-      <span class="stat-label">Children Weekly</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">3</span>
-      <span class="stat-label">Sunday Services</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">∞</span>
-      <span class="stat-label">God's Love</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">1</span>
-      <span class="stat-label">Family of Faith</span>
-    </div>
+    <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Children Weekly</span></div>
+    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Sunday Services</span></div>
+    <div class="stat-item"><span class="stat-num">∞</span><span class="stat-label">God's Love</span></div>
+    <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Family of Faith</span></div>
   </div>
 </div>
 
-<!-- ─── MAIN CONTENT ─── -->
-<section class="ministry-content" style="background:var(--ink)">
+<!-- CONTENT -->
+<section class="ministry-content" style="background:#0A1628">
   <div class="container">
     <a href="index.html" class="btn btn-outline back-btn" style="margin-bottom:2rem">← Back to Home</a>
-
     <div class="mc-section reveal">
       <h3>Who We <em style="color:var(--gold-pale)">Are</em></h3>
-      <p>Our Children's Ministry is committed to raising the next generation of bold, faith-filled disciples of Jesus Christ. We create a safe, fun and spiritually rich environment where every child can encounter God in a personal way and build a strong foundation for life.</p>
+      <p>Our Children's Ministry is committed to raising the next generation of bold, faith-filled disciples of Jesus Christ. We create a safe, fun and spiritually rich environment where every child can encounter God personally and build a strong foundation for life.</p>
     </div>
-
     <div class="mc-section reveal" style="--d:.1s">
       <h3>What We <em style="color:var(--gold-pale)">Do</em></h3>
       <div class="activities-grid">
@@ -491,155 +434,50 @@
   </div>
 </section>
 
-<!-- ─── VERSE ─── -->
+<!-- VERSE -->
 <div class="verse-deco">
   <blockquote>Train up a child in the way he should go, and when he is old he will not depart from it.</blockquote>
   <cite>Proverbs 22:6</cite>
 </div>
 
-<!-- ─── PHOTO GALLERY ─── -->
-<section class="gallery-section">
+<!-- ALBUM SLIDER -->
+<section class="album-section">
   <div class="container">
-    <div class="gallery-header reveal">
+    <div class="album-header reveal">
       <span class="eyebrow">Moments of Grace</span>
       <h2>Life in the <em>Children's Ministry</em></h2>
-      <p>Real moments from our Sunday gatherings — children worshipping, learning, praying, and growing together.</p>
     </div>
 
-    <div class="photo-grid reveal" style="--d:.1s" id="photoGrid">
-      <!-- Images injected by JS from children_images/ folder -->
-    </div>
-  </div>
-</section>
+    <div class="slider-wrap reveal" style="--d:.1s">
+      <div class="slider-main" id="sliderMain">
 
-<!-- ─── JOIN US ─── -->
-<section class="ministry-content" style="background:var(--ink)">
-  <div class="container">
-    <div class="mc-section reveal">
-      <h3>Join <em style="color:var(--gold-pale)">Us</em></h3>
-      <p>We'd love to have you be a part of this ministry. Whether you're new to faith or have been walking with God for years — there's a place for you and your family here.</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem">
-        <a href="contact.html" class="btn btn-gold">Connect With Us →</a>
-        <a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20join%20the%20Children's%20Ministry." target="_blank" rel="noopener" class="btn btn-outline">WhatsApp Us</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── LIGHTBOX ─── -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
-  <img id="lbImg" src="" alt="Children's ministry photo"/>
-  <button class="lb-next" id="lbNext" aria-label="Next">›</button>
-  <div class="lb-counter" id="lbCounter"></div>
-</div>
-
-<!-- ─── FOOTER ─── -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-logo"><div class="brand-icon-ft">✦</div><span class="footer-brand-name">Jesus Victory Center</span></div>
-        <p class="footer-tagline">A Christ-centered church in Nairobi, Kenya.</p>
-        <div class="footer-socials">
-          <a class="footer-social-link" href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
-          <a class="footer-social-link" href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
-          <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="slide active">
+          <img src="children_images/child_01.webp" alt="A moment of prayer" loading="eager"/>
+          <div class="slide-caption">A moment of prayer</div>
         </div>
-      </div>
-      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a><a href="contact.html">Contact</a></div>
-      <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="worship.html">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="youth-teens.html">Youth &amp; Teens</a><a href="men-of-purpose.html">Men of Purpose</a></div>
-      <div class="footer-col"><h4>Connect</h4><a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
-    </div>
-    <div class="footer-bottom"><p>© <span id="year"></span> Jesus Victory Center · All Rights Reserved</p><span class="footer-love">Made with <span>♥</span> for the Kingdom</span></div>
-  </div>
-</footer>
-
-<!-- ─── WHATSAPP FLOAT ─── -->
-<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<script src="script.js"></script>
-<script>
-// ─── GALLERY: load images from children_images/ folder ───────────────────────
-(function () {
-  // All 9 images from the children_images subfolder
-  const images = [
-    { src: 'children_images/child_01.webp', caption: 'A moment of prayer' },
-    { src: 'children_images/child_02.webp', caption: 'Worship together' },
-    { src: 'children_images/child_03.webp', caption: 'Sunday gathering' },
-    { src: 'children_images/child_04.webp', caption: 'Hearts bowed in prayer' },
-    { src: 'children_images/child_05.webp', caption: 'Children in faith' },
-    { src: 'children_images/child_06.webp', caption: 'Seeking God' },
-    { src: 'children_images/child_07.webp', caption: 'The next generation' },
-    { src: 'children_images/child_08.webp', caption: 'Learning the Word' },
-    { src: 'children_images/child_09.webp', caption: 'Love in action' },
-  ];
-
-  const grid = document.getElementById('photoGrid');
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  const lbClose = document.getElementById('lbClose');
-  const lbPrev = document.getElementById('lbPrev');
-  const lbNext = document.getElementById('lbNext');
-  const lbCounter = document.getElementById('lbCounter');
-  let current = 0;
-
-  // Build grid
-  images.forEach((img, i) => {
-    const item = document.createElement('div');
-    item.className = 'photo-item';
-    item.innerHTML = `
-      <img src="${img.src}" alt="${img.caption}" loading="lazy" width="576" height="1024"/>
-      <div class="photo-overlay"><span>${img.caption}</span></div>
-    `;
-    item.addEventListener('click', () => openLightbox(i));
-    grid.appendChild(item);
-  });
-
-  function openLightbox(i) {
-    current = i;
-    lbImg.src = images[i].src;
-    lbImg.alt = images[i].caption;
-    lbCounter.textContent = `${i + 1} / ${images.length}`;
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function navigate(dir) {
-    current = (current + dir + images.length) % images.length;
-    lbImg.src = images[current].src;
-    lbImg.alt = images[current].caption;
-    lbCounter.textContent = `${current + 1} / ${images.length}`;
-  }
-
-  lbClose.addEventListener('click', closeLightbox);
-  lbPrev.addEventListener('click', () => navigate(-1));
-  lbNext.addEventListener('click', () => navigate(1));
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', e => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') navigate(-1);
-    if (e.key === 'ArrowRight') navigate(1);
-  });
-})();
-
-// ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ─── YEAR ────────────────────────────────────────────────────────────────────
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+        <div class="slide">
+          <img src="children_images/child_02.webp" alt="Worship together" loading="lazy"/>
+          <div class="slide-caption">Worship together</div>
+        </div>
+        <div class="slide">
+          <img src="children_images/child_03.webp" alt="Sunday gathering" loading="lazy"/>
+          <div class="slide-caption">Sunday gathering</div>
+        </div>
+        <div class="slide">
+          <img src="children_images/child_04.webp" alt="Hearts bowed in prayer" loading="lazy"/>
+          <div class="slide-caption">Hearts bowed in prayer</div>
+        </div>
+        <div class="slide">
+          <img src="children_images/child_05.webp" alt="Children in faith" loading="lazy"/>
+          <div class="slide-caption">Children in faith</div>
+        </div>
+        <div class="slide">
+          <img src="children_images/child_06.webp" alt="Seeking God" loading="lazy"/>
+          <div class="slide-caption">Seeking God</div>
+        </div>
+        <div class="slide">
+          <img src="children_images/child_07.webp" alt="The next generation" loading="lazy"/>
+          <div class="slide-caption">The next generation</div>
+        </div>
+        <div class="slide">
+  
