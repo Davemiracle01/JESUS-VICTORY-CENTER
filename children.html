@@ -11,7 +11,7 @@
 
 /* ── RESET & BASE ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body {
   background: #0A1628;
   color: rgba(255,255,255,.82);
@@ -539,7 +539,7 @@ button { cursor: pointer; font-family: inherit; }
 
 /* ── ALBUM SECTION ─────────────────────────────────────────── */
 .album-section { background: #0d0d0d; padding: 5rem 0 6rem; }
-.album-section .container { max-width: 1000px; }
+.album-section .container { max-width: 1100px; }
 .album-header { text-align: center; margin-bottom: 3rem; }
 .album-header .eyebrow {
   display: inline-block;
@@ -560,86 +560,72 @@ button { cursor: pointer; font-family: inherit; }
 }
 .album-header h2 em { color: #e8a73c; font-style: italic; }
 
-/* ── SLIDER ────────────────────────────────────────────────── */
-.slider-wrap { position: relative; width: 100%; }
-.slider-main {
+/* ── COVERFLOW ─────────────────────────────────────────────── */
+.coverflow-wrap {
   position: relative;
   width: 100%;
-  background: #111;
-  border-radius: 10px;
+  padding: 2rem 0 3rem;
   overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,.65);
-  height: 520px;
 }
-@media (max-width: 768px) { .slider-main { height: 340px; } }
-@media (max-width: 480px) { .slider-main { height: 260px; } }
+.coverflow-stage {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+@media (max-width: 768px) { .coverflow-stage { height: 280px; } }
+@media (max-width: 480px) { .coverflow-stage { height: 220px; } }
 
-.slide { position: absolute; inset: 0; opacity: 0; transition: opacity .55s ease; pointer-events: none; }
-.slide.active { opacity: 1; pointer-events: all; }
-.slide img { width: 100%; height: 100%; object-fit: contain; display: block; background: #111; }
-.slide-caption {
+.cf-card {
+  position: absolute;
+  width: 320px;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .5s ease, box-shadow .5s ease;
+  will-change: transform, opacity;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 768px) { .cf-card { width: 200px; height: 240px; } }
+@media (max-width: 480px) { .cf-card { width: 160px; height: 190px; } }
+.cf-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; transition: transform .5s ease; }
+.cf-card.active { z-index: 10; }
+.cf-card.active img { transform: scale(1.03); }
+.cf-caption {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, transparent 100%);
-  padding: 2rem 1.4rem 1rem;
+  background: linear-gradient(0deg, rgba(0,0,0,.8) 0%, transparent 100%);
+  padding: 2rem 1rem .9rem;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 1rem;
-  color: rgba(255,255,255,.85);
+  font-size: .95rem;
+  color: rgba(255,255,255,.9);
+  opacity: 0;
+  transition: opacity .35s ease;
 }
-.slider-arrow {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  z-index: 10;
+.cf-card.active .cf-caption { opacity: 1; }
+.cf-controls { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-top: 1.5rem; }
+.cf-arrow {
   background: rgba(0,0,0,.55);
   border: 1px solid rgba(255,255,255,.18);
   color: #fff;
-  width: 46px; height: 46px;
+  width: 44px; height: 44px;
   border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
+  font-size: 1.4rem;
   display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
   transition: background .2s, border-color .2s;
   -webkit-tap-highlight-color: transparent;
-  line-height: 1;
 }
-.slider-arrow:hover { background: rgba(200,120,32,.65); border-color: #e8a73c; }
-.slider-arrow.prev { left: .7rem; }
-.slider-arrow.next { right: .7rem; }
-@media (max-width: 480px) { .slider-arrow { width: 36px; height: 36px; font-size: 1.2rem; } }
-
-.slider-counter {
-  position: absolute;
-  top: .75rem; right: 1rem;
-  background: rgba(0,0,0,.6);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 20px;
-  padding: .22rem .7rem;
-  font-family: 'Inter', sans-serif;
-  font-size: .72rem;
-  color: rgba(255,255,255,.65);
-  letter-spacing: .06em;
-  z-index: 10;
-}
-.slider-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.1rem; }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.18); border: none; cursor: pointer; transition: background .25s, transform .25s; padding: 0; -webkit-tap-highlight-color: transparent; }
-.dot.active { background: #e8a73c; transform: scale(1.35); }
-
-.slider-thumbs {
-  display: flex;
-  gap: .6rem;
-  margin-top: 1rem;
-  overflow-x: auto;
-  padding-bottom: .4rem;
-  scrollbar-width: thin;
-  scrollbar-color: #3a2800 transparent;
-}
-.slider-thumbs::-webkit-scrollbar { height: 4px; }
-.slider-thumbs::-webkit-scrollbar-thumb { background: #3a2800; border-radius: 2px; }
-.thumb { flex: 0 0 86px; height: 60px; border-radius: 5px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .25s, opacity .25s; opacity: .45; }
-.thumb.active { border-color: #e8a73c; opacity: 1; }
-.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
-@media (max-width: 480px) { .thumb { flex: 0 0 64px; height: 46px; } }
+.cf-arrow:hover { background: rgba(200,120,32,.65); border-color: #e8a73c; }
+.cf-counter { font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .15em; color: rgba(255,255,255,.4); min-width: 50px; text-align: center; }
+.cf-dots { display: flex; justify-content: center; gap: .45rem; margin-top: 1rem; }
+.cf-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; cursor: pointer; padding: 0; transition: background .25s, transform .25s; -webkit-tap-highlight-color: transparent; }
+.cf-dot.active { background: #e8a73c; transform: scale(1.4); }
 
 /* ── REVEAL ────────────────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--d, 0s); }
@@ -861,23 +847,24 @@ button { cursor: pointer; font-family: inherit; }
       <span class="eyebrow">Moments of Grace</span>
       <h2>Life in the <em>Children's Ministry</em></h2>
     </div>
-    <div class="slider-wrap reveal" style="--d:.1s">
-      <div class="slider-main" id="sliderMain">
-        <div class="slide active"><img src="children_images/child_01.webp" alt="A moment of prayer" loading="eager"/><div class="slide-caption">A moment of prayer</div></div>
-        <div class="slide"><img src="children_images/child_02.webp" alt="Worship together" loading="lazy"/><div class="slide-caption">Worship together</div></div>
-        <div class="slide"><img src="children_images/child_03.webp" alt="Sunday gathering" loading="lazy"/><div class="slide-caption">Sunday gathering</div></div>
-        <div class="slide"><img src="children_images/child_04.webp" alt="Hearts bowed in prayer" loading="lazy"/><div class="slide-caption">Hearts bowed in prayer</div></div>
-        <div class="slide"><img src="children_images/child_05.webp" alt="Children in faith" loading="lazy"/><div class="slide-caption">Children in faith</div></div>
-        <div class="slide"><img src="children_images/child_06.webp" alt="Seeking God" loading="lazy"/><div class="slide-caption">Seeking God</div></div>
-        <div class="slide"><img src="children_images/child_07.webp" alt="The next generation" loading="lazy"/><div class="slide-caption">The next generation</div></div>
-        <div class="slide"><img src="children_images/child_08.webp" alt="Learning the Word" loading="lazy"/><div class="slide-caption">Learning the Word</div></div>
-        <div class="slide"><img src="children_images/child_09.webp" alt="Love in action" loading="lazy"/><div class="slide-caption">Love in action</div></div>
-        <div class="slider-counter" id="sliderCounter">1 / 9</div>
-        <button class="slider-arrow prev" id="sliderPrev" aria-label="Previous">&#8249;</button>
-        <button class="slider-arrow next" id="sliderNext" aria-label="Next">&#8250;</button>
+    <div class="coverflow-wrap reveal" style="--d:.1s">
+      <div class="coverflow-stage" id="cfStage">
+        <div class="cf-card" data-idx="0"><img src="children_images/child_01.webp" alt="A moment of prayer" loading="eager"/><div class="cf-caption">A moment of prayer</div></div>
+        <div class="cf-card" data-idx="1"><img src="children_images/child_02.webp" alt="Worship together" loading="lazy"/><div class="cf-caption">Worship together</div></div>
+        <div class="cf-card" data-idx="2"><img src="children_images/child_03.webp" alt="Sunday gathering" loading="lazy"/><div class="cf-caption">Sunday gathering</div></div>
+        <div class="cf-card" data-idx="3"><img src="children_images/child_04.webp" alt="Hearts bowed in prayer" loading="lazy"/><div class="cf-caption">Hearts bowed in prayer</div></div>
+        <div class="cf-card" data-idx="4"><img src="children_images/child_05.webp" alt="Children in faith" loading="lazy"/><div class="cf-caption">Children in faith</div></div>
+        <div class="cf-card" data-idx="5"><img src="children_images/child_06.webp" alt="Seeking God" loading="lazy"/><div class="cf-caption">Seeking God</div></div>
+        <div class="cf-card" data-idx="6"><img src="children_images/child_07.webp" alt="The next generation" loading="lazy"/><div class="cf-caption">The next generation</div></div>
+        <div class="cf-card" data-idx="7"><img src="children_images/child_08.webp" alt="Learning the Word" loading="lazy"/><div class="cf-caption">Learning the Word</div></div>
+        <div class="cf-card" data-idx="8"><img src="children_images/child_09.webp" alt="Love in action" loading="lazy"/><div class="cf-caption">Love in action</div></div>
       </div>
-      <div class="slider-dots" id="sliderDots"></div>
-      <div class="slider-thumbs" id="sliderThumbs"></div>
+      <div class="cf-controls">
+        <button class="cf-arrow" id="cfPrev" aria-label="Previous">&#8249;</button>
+        <span class="cf-counter" id="cfCounter">1 / 9</span>
+        <button class="cf-arrow" id="cfNext" aria-label="Next">&#8250;</button>
+      </div>
+      <div class="cf-dots" id="cfDots"></div>
     </div>
   </div>
 </section>
@@ -969,63 +956,105 @@ button { cursor: pointer; font-family: inherit; }
   });
 })();
 
-// ── SLIDER ────────────────────────────────────────────────────
+// ── COVERFLOW ─────────────────────────────────────────────────
 (function() {
-  var slides     = document.querySelectorAll('.slide');
-  var dotsWrap   = document.getElementById('sliderDots');
-  var thumbsWrap = document.getElementById('sliderThumbs');
-  var counter    = document.getElementById('sliderCounter');
-  var total      = slides.length;
-  var current    = 0;
+  var cards    = Array.from(document.querySelectorAll('.cf-card'));
+  var dotsWrap = document.getElementById('cfDots');
+  var counter  = document.getElementById('cfCounter');
+  var total    = cards.length;
+  var current  = 0;
   var autoTimer;
+  var touchX   = 0;
 
-  for (var i = 0; i < total; i++) {
-    (function(idx) {
-      var d = document.createElement('button');
-      d.className = 'dot' + (idx === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Photo ' + (idx + 1));
-      d.addEventListener('click', function() { goTo(idx); resetAuto(); });
-      dotsWrap.appendChild(d);
+  // build dots
+  cards.forEach(function(_, idx) {
+    var d = document.createElement('button');
+    d.className = 'cf-dot' + (idx === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Photo ' + (idx + 1));
+    d.addEventListener('click', function() { goTo(idx); resetAuto(); });
+    dotsWrap.appendChild(d);
+  });
 
-      var src = slides[idx].querySelector('img').getAttribute('src');
-      var th = document.createElement('div');
-      th.className = 'thumb' + (idx === 0 ? ' active' : '');
-      th.innerHTML = '<img src="' + src + '" alt="thumb" loading="lazy"/>';
-      th.addEventListener('click', function() { goTo(idx); resetAuto(); });
-      thumbsWrap.appendChild(th);
-    })(i);
+  function layout() {
+    var stage    = document.getElementById('cfStage');
+    var w        = stage.offsetWidth;
+    // responsive offsets
+    var spread   = Math.min(w * 0.28, 200);
+    var farSpread = Math.min(w * 0.46, 340);
+
+    cards.forEach(function(card, idx) {
+      var offset = idx - current;
+      // wrap around for circular feel
+      if (offset > total / 2)  offset -= total;
+      if (offset < -total / 2) offset += total;
+
+      var tx, tz, ry, scale, opacity, zIndex;
+
+      if (offset === 0) {
+        tx = 0; tz = 0; ry = 0; scale = 1; opacity = 1; zIndex = 10;
+        card.classList.add('active');
+      } else if (Math.abs(offset) === 1) {
+        tx = offset * spread; tz = -120; ry = offset * -42;
+        scale = 0.78; opacity = 0.7; zIndex = 5;
+        card.classList.remove('active');
+      } else if (Math.abs(offset) === 2) {
+        tx = offset * farSpread * 0.72; tz = -260; ry = offset * -55;
+        scale = 0.58; opacity = 0.38; zIndex = 2;
+        card.classList.remove('active');
+      } else {
+        tx = offset * farSpread; tz = -380; ry = offset * -60;
+        scale = 0.4; opacity = 0; zIndex = 1;
+        card.classList.remove('active');
+      }
+
+      card.style.transform = 'translateX(' + tx + 'px) translateZ(' + tz + 'px) rotateY(' + ry + 'deg) scale(' + scale + ')';
+      card.style.opacity   = opacity;
+      card.style.zIndex    = zIndex;
+      card.style.boxShadow = offset === 0 ? '0 30px 80px rgba(0,0,0,.8)' : 'none';
+    });
+
+    // dots
+    Array.from(dotsWrap.children).forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+    counter.textContent = (current + 1) + ' / ' + total;
   }
 
   function goTo(n) {
-    slides[current].classList.remove('active');
-    dotsWrap.children[current].classList.remove('active');
-    thumbsWrap.children[current].classList.remove('active');
     current = ((n % total) + total) % total;
-    slides[current].classList.add('active');
-    dotsWrap.children[current].classList.add('active');
-    thumbsWrap.children[current].classList.add('active');
-    counter.textContent = (current + 1) + ' / ' + total;
-    thumbsWrap.children[current].scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    layout();
   }
 
-  document.getElementById('sliderPrev').addEventListener('click', function() { goTo(current - 1); resetAuto(); });
-  document.getElementById('sliderNext').addEventListener('click', function() { goTo(current + 1); resetAuto(); });
+  // click side cards to navigate
+  cards.forEach(function(card, idx) {
+    card.addEventListener('click', function() {
+      if (idx !== current) { goTo(idx); resetAuto(); }
+    });
+  });
+
+  document.getElementById('cfPrev').addEventListener('click', function() { goTo(current - 1); resetAuto(); });
+  document.getElementById('cfNext').addEventListener('click', function() { goTo(current + 1); resetAuto(); });
+
+  // keyboard
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowLeft')  { goTo(current - 1); resetAuto(); }
     if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
   });
 
-  var touchX = 0;
-  var main = document.getElementById('sliderMain');
-  main.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
-  main.addEventListener('touchend', function(e) {
+  // touch swipe
+  var stage = document.getElementById('cfStage');
+  stage.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend',   function(e) {
     var dx = e.changedTouches[0].clientX - touchX;
     if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); resetAuto(); }
   }, { passive: true });
 
   function startAuto() { autoTimer = setInterval(function() { goTo(current + 1); }, 4500); }
   function resetAuto()  { clearInterval(autoTimer); startAuto(); }
+
+  layout();
   startAuto();
+  window.addEventListener('resize', layout);
 })();
 
 // ── SCROLL REVEAL ─────────────────────────────────────────────
@@ -1033,7 +1062,7 @@ var obs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
     if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 
 // ── YEAR ──────────────────────────────────────────────────────
