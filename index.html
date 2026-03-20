@@ -10,18 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#0A1628;color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
+html{scroll-behavior:auto}
+body{background:#0A1628;color:rgba(255,255,255,.82);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
 @media(max-width:768px){body{cursor:auto}}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 button{cursor:pointer;font-family:inherit}
 :root{--gold:#c87820;--gold-pale:#e8a73c;--navy:#0A1628;--dark:#060e1a}
-
-/* SCROLL MARGIN FOR FIXED HEADER */
-section[id], header[id] {
-  scroll-margin-top: 80px;
-}
 
 /* CURSOR */
 .cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999}
@@ -63,17 +58,17 @@ section[id], header[id] {
 .umenu-row-icon{font-size:1.15rem;width:26px;text-align:center;flex-shrink:0}
 .umenu-row-text{flex:1}
 .umenu-row-title{display:block;font-size:.88rem;color:rgba(255,255,255,.85);font-weight:500}
-.umenu-row-desc{display:block;font-size:.75rem;color:rgba(255,255,255,.55);margin-top:.1rem}
+.umenu-row-desc{display:block;font-size:.75rem;color:rgba(255,255,255,.38);margin-top:.1rem}
 .umenu-row-arrow{color:rgba(255,255,255,.2);font-size:.9rem}
 .umenu-times{display:flex;flex-direction:column;gap:.35rem}
 .umenu-time-row{display:flex;align-items:center;gap:.7rem;padding:.55rem .8rem;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
 .umenu-time-row.featured{border-color:rgba(200,120,32,.3);background:rgba(200,120,32,.07)}
 .umenu-time-day{font-family:'Cinzel',serif;font-size:.62rem;color:var(--gold);width:68px;flex-shrink:0}
-.umenu-time-name{flex:1;font-size:.78rem;color:rgba(255,255,255,.75)}
-.umenu-time-val{font-size:.72rem;color:rgba(255,255,255,.5)}
+.umenu-time-name{flex:1;font-size:.78rem;color:rgba(255,255,255,.65)}
+.umenu-time-val{font-size:.72rem;color:rgba(255,255,255,.4)}
 .umenu-footer{padding:1.2rem 1.6rem;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .umenu-give{display:flex;flex-direction:column;gap:.15rem}
-.umenu-give-label{font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase}
+.umenu-give-label{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase}
 .umenu-give-number{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold-pale);font-weight:700;letter-spacing:.05em}
 .umenu-give-btn{background:linear-gradient(135deg,var(--gold),#7a4800);color:#fff;padding:.6rem 1.2rem;border-radius:8px;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;white-space:nowrap;transition:opacity .2s}
 .umenu-give-btn:hover{opacity:.85}
@@ -85,7 +80,7 @@ section[id], header[id] {
 .mm-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .2s}
 .mm-btn:hover .mm-dot,.mm-btn.active .mm-dot{background:var(--gold)}
 .mm-div{width:1px;height:18px;background:rgba(255,255,255,.08);flex-shrink:0}
-@media(max-width:600px){.mini-menu{padding:.4rem .45rem;margin-bottom:.5rem}.mm-btn{padding:.3rem .4rem;font-size:.5rem}.mm-btn .label{display:none}.mm-dot{width:6px;height:6px}.mm-div{height:14px}}
+@media(max-width:600px){.mini-menu{padding:.4rem .45rem}.mm-btn{padding:.3rem .4rem;font-size:.5rem}.mm-btn .label{display:none}.mm-dot{width:6px;height:6px}.mm-div{height:14px}}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;padding:.7rem 1.5rem;border-radius:8px;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;transition:all .25s;text-decoration:none;border:none;cursor:pointer}
@@ -97,8 +92,7 @@ section[id], header[id] {
 .btn-crimson:hover{opacity:.88;transform:translateY(-2px)}
 
 /* HERO */
-.hero{position:relative;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:6rem 2rem 6rem}
-@media(max-width:768px){.hero{padding:6rem 1rem 5rem}}
+.hero{position:relative;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:6rem 2rem 4rem}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 60% 40%,#1a0800 0%,#0A1628 60%,#030810 100%)}
 .hero-rays{position:absolute;inset:0;background:conic-gradient(from 200deg at 65% 45%,transparent 0deg,rgba(200,120,32,.04) 15deg,transparent 30deg,rgba(200,120,32,.03) 50deg,transparent 70deg);pointer-events:none}
 canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
@@ -108,17 +102,13 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:1.2rem}
 .hero-title em{display:block;color:var(--gold-pale);font-style:italic}
 .hero-tagline{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.3em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:1rem}
-.hero-sub{font-size:clamp(.9rem,2vw,1.05rem);color:rgba(255,255,255,.65);max-width:480px;line-height:1.7;margin-bottom:2.2rem}
+.hero-sub{font-size:clamp(.9rem,2vw,1.05rem);color:rgba(255,255,255,.5);max-width:480px;line-height:1.7;margin-bottom:2.2rem}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-
-/* HERO STATS - FIXED SPACING */
-.hero-stats{position:absolute;bottom:2rem;left:2rem;right:2rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;z-index:2;background:rgba(6,14,26,.4);backdrop-filter:blur(8px);border-radius:20px;padding:1.2rem 2rem;border:1px solid rgba(200,120,32,.2)}
-@media(max-width:768px){.hero-stats{padding:1rem 1.2rem;gap:1rem;justify-content:center}}
-@media(max-width:480px){.hero-stats{gap:1.5rem;justify-content:space-evenly}}
-.hero-stat{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center;min-width:80px}
-.hero-stat-num{font-family:'Cinzel',serif;font-size:clamp(1.4rem,5vw,2.4rem);font-weight:700;color:var(--gold-pale);line-height:1.2;letter-spacing:.02em}
-.hero-stat-label{font-size:.68rem;letter-spacing:.12em;color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:400}
-@media(max-width:480px){.hero-stat-label{font-size:.6rem;letter-spacing:.08em}}
+.hero-stats{position:absolute;bottom:3rem;left:2rem;right:2rem;display:flex;gap:2rem;flex-wrap:wrap;z-index:2}
+.hero-stat{display:flex;flex-direction:column;gap:.2rem}
+.hero-stat-num{font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;color:var(--gold-pale);line-height:1}
+.hero-stat-label{font-size:.68rem;letter-spacing:.15em;color:rgba(255,255,255,.3);text-transform:uppercase}
+@media(max-width:600px){.hero-stats{bottom:2rem;gap:1.2rem}}
 
 /* EBENEZER */
 #ebenezer{padding:5rem 0;background:linear-gradient(180deg,#060e1a 0%,#0a1628 100%);text-align:center;position:relative}
@@ -127,7 +117,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .ebenezer-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:1rem}
 .ebenezer-name span{color:var(--gold-pale);font-style:italic}
 .ebenezer-deco{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 1.2rem}
-.ebenezer-tagline{font-size:.95rem;color:rgba(255,255,255,.65);max-width:520px;margin:0 auto;line-height:1.7}
+.ebenezer-tagline{font-size:.95rem;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto;line-height:1.7}
 
 /* MARQUEE */
 .marquee-strip{background:#100800;border-top:1px solid rgba(200,120,32,.2);border-bottom:1px solid rgba(200,120,32,.2);padding:.7rem 0;overflow:hidden;white-space:nowrap}
@@ -154,9 +144,9 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .tag-service{color:#7ec8e3;border-color:rgba(126,200,227,.35);background:rgba(126,200,227,.08)}
 .tag-notice{color:#a8e6a3;border-color:rgba(168,230,163,.35);background:rgba(168,230,163,.08)}
 .tag-prayer{color:#d4a8f0;border-color:rgba(212,168,240,.35);background:rgba(212,168,240,.08)}
-.ann-card-date{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.35);margin-bottom:.4rem}
+.ann-card-date{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.25);margin-bottom:.4rem}
 .ann-card-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.5rem}
-.ann-card-body{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.6}
+.ann-card-body{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6}
 .ann-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.4rem}
 .ann-arrow{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);width:36px;height:36px;border-radius:50%;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,color .2s;-webkit-tap-highlight-color:transparent}
 .ann-arrow:hover{background:rgba(200,120,32,.5);border-color:var(--gold);color:#fff}
@@ -177,8 +167,8 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .display.dark{color:#1a1208}
 .display em{color:var(--gold-pale);font-style:italic}
 .display.dark em{color:var(--gold)}
-.section-body{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.75;max-width:580px}
-.section-body.dark{color:rgba(30,20,5,.7)}
+.section-body{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.75;max-width:580px}
+.section-body.dark{color:rgba(30,20,5,.6)}
 .verse-block{background:#0A1628;border-radius:12px;padding:2.5rem 2rem;position:relative;border-left:3px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.15)}
 .verse-q{font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(200,120,32,.15);line-height:1;position:absolute;top:-.5rem;left:1.2rem;pointer-events:none}
 .verse-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,3vw,1.6rem);font-style:italic;color:#fff;line-height:1.5;margin-bottom:.8rem;position:relative;z-index:1}
@@ -190,14 +180,14 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .services-list{display:flex;flex-direction:column;gap:0}
 .service-row{display:flex;align-items:center;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap}
 .service-row:first-child{border-top:1px solid rgba(255,255,255,.06)}
-.service-row.featured{background:rgba(200,120,32,.08);border-left:3px solid var(--gold);border-radius:8px;padding-left:1rem;padding-right:1rem;margin-left:-.5rem}
-.service-num{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:rgba(200,120,32,.5);width:28px;flex-shrink:0}
+.service-row.featured{background:rgba(200,120,32,.05);border-color:rgba(200,120,32,.2);padding-left:1rem;padding-right:1rem;border-radius:8px;border-top:1px solid rgba(200,120,32,.2)}
+.service-num{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:rgba(200,120,32,.4);width:28px;flex-shrink:0}
 .service-info{flex:1;min-width:160px}
 .service-info h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#fff;font-weight:700;margin-bottom:.2rem}
-.service-info p{font-size:.82rem;color:rgba(255,255,255,.5)}
+.service-info p{font-size:.82rem;color:rgba(255,255,255,.4)}
 .service-time-badge{display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;flex-shrink:0}
 .service-day{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
-.service-time-text{font-family:'Cinzel',serif;font-size:.8rem;color:rgba(255,255,255,.75)}
+.service-time-text{font-family:'Cinzel',serif;font-size:.8rem;color:rgba(255,255,255,.65)}
 
 /* MINISTRIES */
 .ministries{padding:6rem 0;background:#f5f0e8}
@@ -207,7 +197,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .ministry-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1);border-color:rgba(200,120,32,.3)}
 .ministry-icon{font-size:2rem}
 .ministry-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#1a1208}
-.ministry-card p{font-size:.82rem;color:rgba(30,20,5,.65);line-height:1.6;flex:1}
+.ministry-card p{font-size:.82rem;color:rgba(30,20,5,.55);line-height:1.6;flex:1}
 .mc-link{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-top:.4rem}
 
 /* SERMONS */
@@ -221,7 +211,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .sermon-meta{padding:1.2rem}
 .sermon-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:.4rem}
 .sermon-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.4rem}
-.sermon-desc{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6}
+.sermon-desc{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.6}
 
 /* CTA */
 .cta-section{padding:6rem 0;background:linear-gradient(135deg,#0e1e38 0%,#060e1a 100%)}
@@ -231,34 +221,33 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .give-icon{font-size:2.5rem}
 .give-label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
 .give-number{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:var(--gold-pale);letter-spacing:.05em}
-.give-sub{font-size:.78rem;color:rgba(255,255,255,.45)}
+.give-sub{font-size:.78rem;color:rgba(255,255,255,.35)}
 .cta-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
 
 /* FOOTER */
-.footer{background:#060e1a;border-top:1px solid rgba(200,120,32,.15);padding:4rem 0 2rem}
-@media(max-width:768px){.footer{padding-bottom:5rem}}
+.footer{background:#060e1a;border-top:1px solid rgba(200,120,32,.15);padding:4rem 0 2rem;padding-bottom:7rem}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
 @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
 .footer-brand-logo{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
 .brand-icon-ft{color:var(--gold);font-size:1.1rem}
 .footer-brand-name{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.1em;color:rgba(255,255,255,.8)}
-.footer-tagline{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;margin-bottom:1.2rem}
+.footer-tagline{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.6;margin-bottom:1.2rem}
 .footer-socials{display:flex;gap:.8rem;flex-wrap:wrap}
-.footer-social-link{font-size:.72rem;letter-spacing:.1em;color:rgba(255,255,255,.45);text-transform:uppercase;padding:.35rem .8rem;border:1px solid rgba(255,255,255,.1);border-radius:20px;transition:color .2s,border-color .2s}
+.footer-social-link{font-size:.72rem;letter-spacing:.1em;color:rgba(255,255,255,.35);text-transform:uppercase;padding:.35rem .8rem;border:1px solid rgba(255,255,255,.1);border-radius:20px;transition:color .2s,border-color .2s}
 .footer-social-link:hover{color:var(--gold-pale);border-color:rgba(200,120,32,.4)}
-.footer-col h4{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em;color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:1.1rem}
-.footer-col a,.footer-col p{display:block;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:.55rem;transition:color .2s;line-height:1.5}
+.footer-col h4{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:1.1rem}
+.footer-col a,.footer-col p{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.55rem;transition:color .2s;line-height:1.5}
 .footer-col a:hover{color:var(--gold-pale)}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:1rem}
-.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35)}
-.footer-love{font-size:.75rem;color:rgba(255,255,255,.3)}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.25)}
+.footer-love{font-size:.75rem;color:rgba(255,255,255,.2)}
 .footer-love span{color:#c87820}
 
 /* WA FLOAT */
-.wa-float{position:fixed;bottom:6.5rem;right:1.5rem;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);z-index:700;transition:transform .2s,box-shadow .2s}
+.wa-float{position:fixed;bottom:5.5rem;right:1.5rem;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);z-index:700;transition:transform .2s,box-shadow .2s}
 .wa-float:hover{transform:scale(1.1);box-shadow:0 8px 28px rgba(37,211,102,.55)}
-@media(max-width:600px){.wa-float{bottom:6rem;right:1rem;width:44px;height:44px}}
+@media(max-width:600px){.wa-float{bottom:5rem;right:1rem;width:44px;height:44px}}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
@@ -301,16 +290,16 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
       <div class="umenu-section-label">Navigate</div>
       <a href="index.html" class="umenu-row active"><span class="umenu-row-icon">🏠</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">→</span></a>
       <a href="about.html" class="umenu-row"><span class="umenu-row-icon">✦</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">→</span></a>
-      <a href="#sermons" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">→</span></a>
       <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">📍</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">→</span></a>
     </div>
     <div class="umenu-section">
       <div class="umenu-section-label">Ministries</div>
       <a href="children.html" class="umenu-row"><span class="umenu-row-icon">🧒</span><div class="umenu-row-text"><span class="umenu-row-title">Children's Ministry</span><span class="umenu-row-desc">Nurturing young hearts in faith</span></div><span class="umenu-row-arrow">→</span></a>
-      <a href="#" class="umenu-row"><span class="umenu-row-icon">🎵</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="worship.html" class="umenu-row"><span class="umenu-row-icon">🎵</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">→</span></a>
       <a href="daughters-of-zion.html" class="umenu-row"><span class="umenu-row-icon">👑</span><div class="umenu-row-text"><span class="umenu-row-title">Daughters of Zion</span><span class="umenu-row-desc">Women walking in purpose</span></div><span class="umenu-row-arrow">→</span></a>
-      <a href="#" class="umenu-row"><span class="umenu-row-icon">⚡</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">→</span></a>
-      <a href="#" class="umenu-row"><span class="umenu-row-icon">🦁</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="youth-teens.html" class="umenu-row"><span class="umenu-row-icon">⚡</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="men-of-purpose.html" class="umenu-row"><span class="umenu-row-icon">🦁</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">→</span></a>
     </div>
     <div class="umenu-section">
       <div class="umenu-section-label">Service Times</div>
@@ -327,7 +316,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
       <a href="https://wa.me/254722830190" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#25D366">💬</span><div class="umenu-row-text"><span class="umenu-row-title">WhatsApp</span><span class="umenu-row-desc">+254 722 830 190</span></div><span class="umenu-row-arrow">↗</span></a>
       <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#FF0000">▶</span><div class="umenu-row-text"><span class="umenu-row-title">YouTube</span><span class="umenu-row-desc">Watch our sermons</span></div><span class="umenu-row-arrow">↗</span></a>
       <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#1877F2">f</span><div class="umenu-row-text"><span class="umenu-row-title">Facebook</span><span class="umenu-row-desc">Join our community</span></div><span class="umenu-row-arrow">↗</span></a>
-      <a href="mailto:info@jesusvictorycenter.org" class="umenu-row"><span class="umenu-row-icon">✉</span><div class="umenu-row-text"><span class="umenu-row-title">Email</span><span class="umenu-row-desc">info@jesusvictorycenter.org</span></div><span class="umenu-row-arrow">↗</span></a>
+      <a href="mailto:jvcjesusvictory@gmail.com" class="umenu-row"><span class="umenu-row-icon">✉</span><div class="umenu-row-text"><span class="umenu-row-title">Email</span><span class="umenu-row-desc">jvcjesusvictory@gmail.com</span></div><span class="umenu-row-arrow">↗</span></a>
     </div>
   </div>
   <div class="umenu-footer">
@@ -335,7 +324,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
       <span class="umenu-give-label">Give via M-Pesa · Send Money</span>
       <span class="umenu-give-number">0116 636 653</span>
     </div>
-    <a href="#give" class="umenu-give-btn">Give Now →</a>
+    <a href="contact.html" class="umenu-give-btn">Give Now →</a>
   </div>
 </aside>
 
@@ -345,9 +334,9 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
-    <a href="#sermons">Sermons</a>
+    <a href="sermons.html">Sermons</a>
     <a href="contact.html">Contact</a>
-    <a href="#give" class="nav-give-btn">Give</a>
+    <a href="contact.html" class="nav-give-btn">Give</a>
   </div>
   <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu">
     <span class="umenu-trigger-icon">☰</span>
@@ -365,10 +354,10 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
     <p class="hero-eyebrow">Welcome to</p>
     <h1 class="hero-title">Jesus Victory<em>Center</em></h1>
     <p class="hero-tagline">Faith · Hope · Victory</p>
-    <p class="hero-sub">A place of worship, prayer, and love — where brokenness meets grace. Join a Christ-centered community in Nairobi.</p>
+    <p class="hero-sub">A place of worship, prayer, and love — where lives are transformed through the grace of Jesus Christ.</p>
     <div class="hero-ctas">
       <a href="#ebenezer" class="btn btn-gold">Our Spiritual Roots</a>
-      <a href="#sermons" class="btn btn-outline">Watch Sermons →</a>
+      <a href="sermons.html" class="btn btn-outline">Watch Sermons →</a>
     </div>
   </div>
   <div class="hero-stats">
@@ -488,7 +477,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
     <div class="services-header reveal">
       <div class="section-eyebrow centered">Join Us</div>
       <h2 class="display" style="text-align:center;margin-bottom:.4rem">Our <em>Service</em> Times</h2>
-      <p style="text-align:center;color:rgba(255,200,150,.5);font-size:.88rem;margin-top:.4rem">We'd love to see you there</p>
+      <p style="text-align:center;color:rgba(255,200,150,.3);font-size:.88rem;margin-top:.4rem">We'd love to see you there</p>
     </div>
     <div class="services-list reveal" style="--d:.1s">
       <div class="service-row"><div class="service-num">01</div><div class="service-info"><h3>Hour of Power</h3><p>Prayer &amp; Intercessory — Begin Sunday in God's presence</p></div><div class="service-time-badge"><span class="service-day">Sunday</span><span class="service-time-text">7:30 – 9:00 AM</span></div></div>
@@ -510,10 +499,10 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
     </div>
     <div class="ministries-grid reveal" style="--d:.1s">
       <a href="children.html" class="ministry-card"><span class="ministry-icon">🧒</span><h3>Children's Ministry</h3><p>Nurturing young hearts in faith, love and the Word of God.</p><span class="mc-link">Learn More →</span></a>
-      <a href="#" class="ministry-card"><span class="ministry-icon">🎵</span><h3>Worship Ministry</h3><p>Leading the congregation into the presence of God through spirit-filled worship.</p><span class="mc-link">Learn More →</span></a>
+      <a href="worship.html" class="ministry-card"><span class="ministry-icon">🎵</span><h3>Worship Ministry</h3><p>Leading the congregation into the presence of God through spirit-filled worship.</p><span class="mc-link">Learn More →</span></a>
       <a href="daughters-of-zion.html" class="ministry-card"><span class="ministry-icon">👑</span><h3>Daughters of Zion</h3><p>Empowering women to walk in their God-given identity, purpose and destiny.</p><span class="mc-link">Learn More →</span></a>
-      <a href="#" class="ministry-card"><span class="ministry-icon">⚡</span><h3>Youth &amp; Teens Together</h3><p>Building a generation of bold, faith-filled young disciples of Jesus Christ.</p><span class="mc-link">Learn More →</span></a>
-      <a href="#" class="ministry-card"><span class="ministry-icon">🦁</span><h3>Men of Purpose</h3><p>Raising godly men of integrity, vision and kingdom influence.</p><span class="mc-link">Learn More →</span></a>
+      <a href="youth-teens.html" class="ministry-card"><span class="ministry-icon">⚡</span><h3>Youth &amp; Teens Together</h3><p>Building a generation of bold, faith-filled young disciples of Jesus Christ.</p><span class="mc-link">Learn More →</span></a>
+      <a href="men-of-purpose.html" class="ministry-card"><span class="ministry-icon">🦁</span><h3>Men of Purpose</h3><p>Raising godly men of integrity, vision and kingdom influence.</p><span class="mc-link">Learn More →</span></a>
     </div>
   </div>
 </section>
@@ -528,7 +517,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
       </div>
       <div>
         <p class="section-body" style="margin-bottom:1.4rem">"Faith comes by hearing, and hearing by the word of God." — Romans 10:17</p>
-        <a href="#sermons" class="btn btn-outline">All Sermons →</a>
+        <a href="sermons.html" class="btn btn-outline">All Sermons →</a>
       </div>
     </div>
     <div class="sermons-grid reveal" style="--d:.1s">
@@ -557,7 +546,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
         <span class="give-label">M-Pesa · Send Money</span>
         <span class="give-number">0116 636 653</span>
         <span class="give-sub">Available 24/7 from anywhere in Kenya</span>
-        <a href="contact.html" class="btn btn-gold" style="width:100%;justify-content:center">Get Directions →</a>
+        <a href="about.html" class="btn btn-gold" style="width:100%;justify-content:center">Get Directions →</a>
       </div>
     </div>
   </div>
@@ -576,9 +565,9 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
           <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
-      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="#sermons">Sermons</a><a href="contact.html">Contact</a></div>
-      <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="#">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="#">Youth &amp; Teens</a><a href="#">Men of Purpose</a></div>
-      <div class="footer-col"><h4>Connect</h4><a href="mailto:info@jesusvictorycenter.org">info@jesusvictorycenter.org</a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="worship.html">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="youth-teens.html">Youth &amp; Teens</a><a href="men-of-purpose.html">Men of Purpose</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
     </div>
     <div class="footer-bottom"><p>© <span id="year"></span> Jesus Victory Center · All Rights Reserved</p><span class="footer-love">Made with <span>♥</span> for the Kingdom</span></div>
   </div>
@@ -637,7 +626,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
   },{passive:true});
 })();
 
-// PARTICLES - Reduced for performance
+// PARTICLES
 (function(){
   var canvas=document.getElementById('particles');
   if(!canvas)return;
@@ -645,9 +634,8 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
   function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
   resize();
   window.addEventListener('resize',resize,{passive:true});
-  for(var i=0;i<35;i++)pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1.2+.3,a:Math.random()*.4+.1});
+  for(var i=0;i<55;i++)pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.5+.5,a:Math.random()*.5+.1});
   function draw(){
-    if(!canvas.width)return;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     pts.forEach(function(p){
       p.x+=p.vx;p.y+=p.vy;
@@ -679,7 +667,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
   function goTo(n){
     calcPages();
     current=((n%pages)+pages)%pages;
-    var pv=getPerView(),cardWidth=cards[0]?cards[0].offsetWidth:300,gap=16;
+    var pv=getPerView(),cardWidth=cards[0].offsetWidth,gap=16;
     var offset=current*pv*(cardWidth+gap);
     var maxOffset=(total-pv)*(cardWidth+gap);
     if(offset>maxOffset)offset=maxOffset;
@@ -687,30 +675,24 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
     Array.from(dotsWrap.children).forEach(function(d,i){d.classList.toggle('active',i===current);});
   }
 
-  var prevBtn=document.getElementById('annPrev'),nextBtn=document.getElementById('annNext');
-  if(prevBtn)prevBtn.addEventListener('click',function(){goTo(current-1);resetAuto();});
-  if(nextBtn)nextBtn.addEventListener('click',function(){goTo(current+1);resetAuto();});
+  document.getElementById('annPrev').addEventListener('click',function(){goTo(current-1);resetAuto();});
+  document.getElementById('annNext').addEventListener('click',function(){goTo(current+1);resetAuto();});
   function startAuto(){autoTimer=setInterval(function(){goTo(current+1);},5000);}
   function resetAuto(){clearInterval(autoTimer);startAuto();}
   startAuto();
   window.addEventListener('resize',function(){buildDots();goTo(0);},{passive:true});
 
   var tx=0;
-  if(track.parentElement){
-    track.parentElement.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
-    track.parentElement.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){goTo(current+(dx<0?1:-1));resetAuto();}},{passive:true});
-  }
+  track.parentElement.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  track.parentElement.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){goTo(current+(dx<0?1:-1));resetAuto();}},{passive:true});
 })();
-
-// YEAR
-document.getElementById('year').textContent = new Date().getFullYear();
 
 // SCROLL REVEAL
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  if(!els.length)return;
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.12});
-  els.forEach(function(el){io.observe(el);});
-})();
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+
+// YEAR
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
