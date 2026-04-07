@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Bible | Jesus Victory Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Read the Holy Bible online — Jesus Victory Center's Bible reader. Daily verse, full chapter reading, and verse search."/>
+<meta name="theme-color" content="#0A1628"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Cinzel:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ── BIBLE PAGE STYLES ── */
+
+/* Daily Verse Section */
+#daily-verse {
+  padding: clamp(5rem,10vw,8rem) 0;
+  background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
+  position: relative;
+  overflow: hidden;
+}
+#daily-verse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(232,114,12,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+#daily-verse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(30,58,95,.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30,58,95,.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.dv-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(17,34,64,.7);
+  border: 1px solid rgba(232,114,12,.2);
+  border-radius: 6px;
+  padding: clamp(2.5rem,5vw,4rem) clamp(2rem,5vw,4rem);
+  max-width: 840px;
+  margin: 2rem auto 0;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4), 0 0 0 1px rgba(232,114,12,.06);
+  transition: border-color .4s;
+}
+.dv-card:hover { border-color: rgba(232,114,12,.4); }
+.dv-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), var(--amber-lt), var(--amber), transparent);
+}
+.dv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: rgba(232,114,12,.12);
+  border: 1px solid rgba(232,114,12,.3);
+  color: var(--amber-pale);
+  font-family: 'Cinzel', serif;
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: .28rem .9rem;
+  border-radius: 50px;
+  margin-bottom: 1.8rem;
+}
+.dv-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--amber);
+  border-radius: 50%;
+  animation: dvPulse 2.2s ease-in-out infinite;
+}
+@keyframes dvPulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(1.6)}
+}
+.dv-q {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7rem;
+  line-height: .7;
+  color: var(--amber);
+  opacity: .1;
+  display: block;
+  margin-bottom: .5rem;
+  pointer-events: none;
+  user-select: none;
+}
+.dv-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-style: italic;
+  font-weight: 600;
+  color: white;
+  line-height: 1.55;
+  margin-bottom: 1.4rem;
+  position: relative;
+  z-index: 1;
+}
+.dv-ref {
+  font-family: 'Cinzel', serif;
+  font-size: .72rem;
+  letter-spacing: .2em;
+  color: var(--amber);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1.6rem;
+}
+.dv-actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.dv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .5rem 1.2rem;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all .25s;
+}
+.dv-btn-copy {
+  background: rgba(232,114,12,.15);
+  color: var(--amber-pale);
+  border: 1px solid rgba(232,114,12,.3);
+}
+.dv-btn-copy:hover {
+  background: rgba(232,114,12,.28);
+  border-color: var(--amber);
+  color: var(--amber);
+  transform: translateY(-2px);
+}
+.dv-btn-read {
+  background: var(--amber);
+  color: var(--navy);
+  font-weight: 600;
+  box-shadow: 0 4px 18px rgba(232,114,12,.35);
+}
+.dv-btn-read:hover {
+  background: var(--amber-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232,114,12,.5);
+}
+.dv-loading {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  color: var(--text-dim);
+  font-size: .88rem;
+  font-style: italic;
+  min-height: 60px;
+}
+.dv-spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(232,114,12,.2);
+  border-top-color: var(--amber);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* Bible Reader Section */
+#bible-reader {
+  padding: clamp(5rem,10vw,8rem) 0;
+  background: var(--navy);
+  position: relative;
+}
+#bible-reader::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,114,12,.2), transparent);
+}
+
+.reader-controls {
+  background: rgba(17,34,64,.6);
+  border: 1px solid rgba(30,58,95,.5);
+  border-radius: 6px;
+  padding: 1.8rem 2rem;
+  margin: 2rem 0 2.4rem;
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+  backdrop-filter: blur(8px);
+}
+@media(max-width: 800px) {
+  .reader-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+  .reader-controls .read-btn-wrap {
+    grid-column: span 2;
+  }
+}
+@media(max-width: 500px) {
+  .reader-controls {
+    grid-template-columns: 1fr;
+  }
+  .reader-controls .read-btn-wrap {
+    grid-column: span 1;
+  }
+}
+
+.ctrl-group {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.ctrl-label {
+  font-family: 'Cinzel', serif;
+  font-size: .58rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  display: block;
+}
+.ctrl-select {
+  background: rgba(10,22,40,.8);
+  border: 1px solid rgba(30,58,95,.6);
+  color: rgba(197,213,228,.85);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  padding: .6rem 2.2rem .6rem .85rem;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23E8720C' opacity='.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .85rem center;
+  width: 100%;
+}
+.ctrl-select:focus {
+  border-color: rgba(232,114,12,.5);
+  background-color: rgba(17,34,64,.9);
+}
+.ctrl-select option {
+  background: #0a1628;
+  color: rgba(197,213,228,.85);
+}
+
+.btn-load {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .72rem 1.8rem;
+  background: var(--amber);
+  color: var(--navy);
+  font-family: 'Cinzel', serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .25s, transform .25s, box-shadow .25s;
+  box-shadow: 0 4px 20px rgba(232,114,12,.35);
+  white-space: nowrap;
+  width: 100%;
+}
+.btn-load:hover {
+  background: var(--amber-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232,114,12,.5);
+}
+.btn-load:active { transform: translateY(0); }
+.btn-load:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Chapter Display */
+.chapter-wrap {
+  position: relative;
+}
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(30,58,95,.5);
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+.chapter-title span {
+  font-style: italic;
+  color: var(--amber-pale);
+}
+.chapter-translation {
+  font-family: 'Cinzel', serif;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.verses-container {
+  position: relative;
+}
+.verse-line {
+  display: flex;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid rgba(30,58,95,.2);
+  transition: background .2s;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.verse-line:hover { background: rgba(232,114,12,.05); }
+.verse-line.highlighted { background: rgba(232,114,12,.1) !important; }
+.verse-num {
+  font-family: 'Cinzel', serif;
+  font-size: .65rem;
+  color: var(--amber);
+  opacity: .7;
+  flex-shrink: 0;
+  width: 28px;
+  padding-top: .2rem;
+  text-align: right;
+  letter-spacing: .05em;
+  transition: opacity .2s;
+}
+.verse-line:hover .verse-num { opacity: 1; }
+.verse-text-content {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.75;
+  color: rgba(197,213,228,.82);
+}
+.verse-text-content.first-verse::first-letter {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: var(--amber);
+  float: left;
+  line-height: .8;
+  margin-right: .06em;
+  margin-top: .08em;
+}
+
+/* Navigation */
+.chapter-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.8rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(30,58,95,.4);
+  flex-wrap: wrap;
+}
+.chapter-nav-info {
+  font-family: 'Cinzel', serif;
+  font-size: .7rem;
+  letter-spacing: .16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: center;
+  flex: 1;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .6rem 1.4rem;
+  background: rgba(17,34,64,.7);
+  border: 1px solid rgba(30,58,95,.6);
+  color: rgba(197,213,228,.6);
+  font-family: 'Cinzel', serif;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .25s;
+}
+.nav-btn:hover {
+  border-color: rgba(232,114,12,.4);
+  color: var(--amber-pale);
+  background: rgba(232,114,12,.08);
+}
+.nav-btn:disabled {
+  opacity: .28;
+  cursor: not-allowed;
+}
+
+/* Copy feedback */
+.copy-toast {
+  position: fixed;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(17,34,64,.96);
+  border: 1px solid rgba(232,114,12,.4);
+  color: var(--amber-pale);
+  font-family: 'Cinzel', serif;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .65rem 1.6rem;
+  border-radius: 50px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  z-index: 8000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
+  white-space: nowrap;
+}
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Reader placeholder state */
+.reader-placeholder {
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.reader-placeholder-icon {
+  font-size: 3.5rem;
+  opacity: .15;
+}
+.reader-placeholder p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-muted);
+  max-width: 36ch;
+  line-height: 1.7;
+}
+.reader-error {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: rgba(232,114,12,.7);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Quick Search Section */
+#verse-search {
+  padding: clamp(4rem,8vw,7rem) 0;
+  background: var(--navy-2);
+  position: relative;
+  overflow: hidden;
+}
+#verse-search::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(232,114,12,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.search-wrap {
+  max-width: 640px;
+  margin: 2rem auto 0;
+  position: relative;
+  z-index: 1;
+}
+.search-input-row {
+  display: flex;
+  gap: .75rem;
+}
+.verse-search-input {
+  flex: 1;
+  background: rgba(10,22,40,.8);
+  border: 1px solid rgba(30,58,95,.6);
+  color: rgba(197,213,228,.9);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  padding: .85rem 1.2rem;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color .2s;
+}
+.verse-search-input:focus { border-color: rgba(232,114,12,.5); }
+.verse-search-input::placeholder { color: var(--text-muted); font-style: italic; }
+.btn-search {
+  padding: .85rem 1.8rem;
+  background: var(--amber);
+  color: var(--navy);
+  font-family: 'Cinzel', serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .25s, transform .25s;
+  box-shadow: 0 4px 18px rgba(232,114,12,.3);
+  white-space: nowrap;
+}
+.btn-search:hover {
+  background: var(--amber-lt);
+  transform: translateY(-2px);
+}
+.search-hint {
+  font-size: .75rem;
+  color: var(--text-muted);
+  margin-top: .75rem;
+  text-align: center;
+  font-style: italic;
+}
+.search-result {
+  margin-top: 2rem;
+  background: rgba(17,34,64,.6);
+  border: 1px solid rgba(30,58,95,.5);
+  border-radius: 6px;
+  padding: 2.2rem 2rem;
+  display: none;
+  position: relative;
+}
+.search-result::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, var(--amber), var(--steel), transparent);
+  border-radius: 6px 0 0 6px;
+}
+.search-result-ref {
+  font-family: 'Cinzel', serif;
+  font-size: .68rem;
+  letter-spacing: .22em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+.search-result-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  color: white;
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+.search-result-actions {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+}
+
+/* Popular verses */
+.popular-verses {
+  margin-top: 2.2rem;
+  position: relative;
+  z-index: 1;
+}
+.popular-label {
+  font-family: 'Cinzel', serif;
+  font-size: .58rem;
+  letter-spacing: .24em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.popular-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+}
+.verse-chip {
+  background: rgba(17,34,64,.6);
+  border: 1px solid rgba(30,58,95,.5);
+  color: rgba(197,213,228,.5);
+  font-family: 'Cinzel', serif;
+  font-size: .62rem;
+  letter-spacing: .1em;
+  padding: .35rem .9rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .22s;
+}
+.verse-chip:hover {
+  border-color: rgba(232,114,12,.45);
+  color: var(--amber-pale);
+  background: rgba(232,114,12,.1);
+}
+
+/* Plans / CTA */
+#bible-plans {
+  padding: clamp(4rem,8vw,7rem) 0;
+  background: var(--navy-3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#bible-plans::before {
+  content: 'WORD';
+  position: absolute;
+  bottom: -.1em; right: -.05em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(6rem,16vw,14rem);
+  font-weight: 700;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(30,58,95,.18);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  margin-top: 3rem;
+  text-align: left;
+}
+.plan-card {
+  background: rgba(17,34,64,.5);
+  border: 1px solid rgba(30,58,95,.5);
+  border-radius: 6px;
+  padding: 2rem 1.8rem;
+  transition: border-color .3s, background .3s, transform .3s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.plan-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.plan-card:hover {
+  border-color: rgba(232,114,12,.3);
+  background: rgba(232,114,12,.05);
+  transform: translateY(-4px);
+}
+.plan-card:hover::after { opacity: 1; }
+.plan-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.plan-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: .5rem;
+}
+.plan-desc {
+  font-size: .82rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* Animations */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+/* Override inner-page cursor for this page body */
+@media(pointer: coarse) { .cursor,.cursor-ring { display: none; } body { cursor: auto; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Mini Menu -->
+<nav class="mini-menu always" id="miniMenu">
+  <button class="mm-btn" data-target="index.html"><span class="mm-dot"></span><span class="label">Home</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn active" data-target="daily-verse"><span class="mm-dot"></span><span class="label">Daily</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="bible-reader"><span class="mm-dot"></span><span class="label">Read</span></button>
+  <div class="mm-div"></div>
+  <button class="mm-btn" data-target="verse-search"><span class="mm-dot"></span><span class="label">Search</span></button>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html" data-num="01">Home</a>
+  <a href="about.html" data-num="02">About</a>
+  <a href="sermons.html" data-num="03">Sermons</a>
+  <a href="bible.html" data-num="04" style="color:var(--amber)">Bible</a>
+  <a href="contact.html" data-num="05">Contact</a>
+  <div class="drawer-sep"></div>
+  <div class="drawer-cat">Ministries</div>
+  <a href="children.html" data-num="06">Children</a>
+  <a href="worship.html" data-num="07">Worship</a>
+  <a href="daughters-of-zion.html" data-num="08">Daughters of Zion</a>
+  <a href="youth-teens.html" data-num="09">Youth &amp; Teens</a>
+  <a href="men-of-purpose.html" data-num="10">Men of Purpose</a>
+  <div class="drawer-sep"></div>
+  <a href="contact.html" data-num="11" style="color:var(--amber)">Give</a>
+</div>
+
+<!-- UMenu -->
+<div class="umenu-overlay" id="umenuOverlay"></div>
+<aside class="umenu-panel" id="umenuPanel" aria-label="Site navigation">
+  <div class="umenu-header">
+    <div class="umenu-brand"><div class="umenu-brand-icon">&#10022;</div><span>Jesus Victory Center</span></div>
+    <button class="umenu-close" id="umenuClose" aria-label="Close menu">&#10005;</button>
+  </div>
+  <div class="umenu-body">
+    <div class="umenu-section">
+      <div class="umenu-section-label">Navigate</div>
+      <a href="index.html" class="umenu-row"><span class="umenu-row-icon">&#127968;</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="about.html" class="umenu-row"><span class="umenu-row-icon">&#10022;</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">&#128214;</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="bible.html" class="umenu-row active"><span class="umenu-row-icon">&#128278;</span><div class="umenu-row-text"><span class="umenu-row-title">Holy Bible</span><span class="umenu-row-desc">Read the Word of God</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">&#128205;</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Ministries</div>
+      <a href="children.html" class="umenu-row"><span class="umenu-row-icon">&#129306;</span><div class="umenu-row-text"><span class="umenu-row-title">Children's Ministry</span><span class="umenu-row-desc">Nurturing young hearts in faith</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="worship.html" class="umenu-row"><span class="umenu-row-icon">&#127925;</span><div class="umenu-row-text"><span class="umenu-row-title">Worship Ministry</span><span class="umenu-row-desc">Spirit-filled praise &amp; worship</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="daughters-of-zion.html" class="umenu-row"><span class="umenu-row-icon">&#128081;</span><div class="umenu-row-text"><span class="umenu-row-title">Daughters of Zion</span><span class="umenu-row-desc">Women walking in purpose</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="youth-teens.html" class="umenu-row"><span class="umenu-row-icon">&#9889;</span><div class="umenu-row-text"><span class="umenu-row-title">Youth &amp; Teens</span><span class="umenu-row-desc">Bold, faith-filled generation</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+      <a href="men-of-purpose.html" class="umenu-row"><span class="umenu-row-icon">&#129409;</span><div class="umenu-row-text"><span class="umenu-row-title">Men of Purpose</span><span class="umenu-row-desc">Godly men of vision &amp; integrity</span></div><span class="umenu-row-arrow">&#8594;</span></a>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Service Times</div>
+      <div class="umenu-times">
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Hour of Power</span><span class="umenu-time-val">7:30 &#8211; 9:00 AM</span></div>
+        <div class="umenu-time-row featured"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Main Service</span><span class="umenu-time-val">9:00 &#8211; 10:30 AM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Sunday</span><span class="umenu-time-name">Third Service</span><span class="umenu-time-val">10:30 AM &#8211; 1:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Wednesday</span><span class="umenu-time-name">Home Bible</span><span class="umenu-time-val">5:00 &#8211; 7:00 PM</span></div>
+        <div class="umenu-time-row"><span class="umenu-time-day">Thursday</span><span class="umenu-time-name">Miracle Service</span><span class="umenu-time-val">5:00 &#8211; 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="umenu-section">
+      <div class="umenu-section-label">Connect With Us</div>
+      <a href="https://wa.me/254722830190" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#25D366">&#128172;</span><div class="umenu-row-text"><span class="umenu-row-title">WhatsApp</span><span class="umenu-row-desc">+254 722 830 190</span></div><span class="umenu-row-arrow">&#8599;</span></a>
+      <a href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#FF0000">&#9654;</span><div class="umenu-row-text"><span class="umenu-row-title">YouTube</span><span class="umenu-row-desc">Watch our sermons</span></div><span class="umenu-row-arrow">&#8599;</span></a>
+      <a href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener" class="umenu-row"><span class="umenu-row-icon" style="color:#1877F2">f</span><div class="umenu-row-text"><span class="umenu-row-title">Facebook</span><span class="umenu-row-desc">Join our community</span></div><span class="umenu-row-arrow">&#8599;</span></a>
+    </div>
+  </div>
+  <div class="umenu-footer">
+    <div class="umenu-give"><span class="umenu-give-label">Give via M-Pesa · Send Money</span><span class="umenu-give-number">0116 636 653</span></div>
+    <a href="contact.html" class="umenu-give-btn">Give Now &#8594;</a>
+  </div>
+</aside>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-icon">&#10022;</div>
+    <span class="brand-name">Jesus Victory Center</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="bible.html" class="active">Bible</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="nav-give-btn">Give</a>
+  </div>
+  <button class="umenu-trigger" id="umenuTrigger" aria-label="Open menu">
+    <span class="umenu-trigger-icon">&#9776;</span>
+    <span class="umenu-trigger-label">Menu</span>
+  </button>
+</nav>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <span class="page-hero-eyebrow">The Living Word</span>
+  <h1>Holy <em>Bible</em></h1>
+  <p>&#8220;Your word is a lamp to my feet and a light to my path.&#8221; &mdash; Psalm 119:105</p>
+</div>
+
+<!-- Daily Verse -->
+<section id="daily-verse">
+  <div class="container">
+    <div class="section-eyebrow centered reveal">Today&rsquo;s Word</div>
+    <h2 class="display" style="text-align:center" class="reveal">Verse of the <em>Day</em></h2>
+    <div class="dv-card reveal">
+      <span class="dv-badge">Daily Verse</span>
+      <div id="dvContent">
+        <div class="dv-loading">
+          <div class="dv-spinner"></div>
+          <span>Loading today&rsquo;s verse&hellip;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bible Reader -->
+<section id="bible-reader">
+  <div class="container">
+    <div class="section-eyebrow reveal">Read the Word</div>
+    <h2 class="display reveal">Bible <em>Reader</em></h2>
+    <p class="section-body reveal" style="margin-top:.6rem">Select a book, chapter, and translation to read. Click any verse to highlight and copy it.</p>
+
+    <!-- Controls -->
+    <div class="reader-controls reveal">
+      <div class="ctrl-group">
+        <label class="ctrl-label" for="transSelect">Translation</label>
+        <select class="ctrl-select" id="transSelect">
+          <option value="kjv">KJV — King James</option>
+          <option value="web">WEB — World English</option>
+          <option value="bbe">BBE — Basic English</option>
+          <option value="asv">ASV — American Standard</option>
+        </select>
+      </div>
+      <div class="ctrl-group">
+        <label class="ctrl-label" for="bookSelect">Book</label>
+        <select class="ctrl-select" id="bookSelect">
+          <optgroup label="Old Testament">
+            <option value="genesis" data-chapters="50">Genesis</option>
+            <option value="exodus" data-chapters="40">Exodus</option>
+            <option value="leviticus" data-chapters="27">Leviticus</option>
+            <option value="numbers" data-chapters="36">Numbers</option>
+            <option value="deuteronomy" data-chapters="34">Deuteronomy</option>
+            <option value="joshua" data-chapters="24">Joshua</option>
+            <option value="judges" data-chapters="21">Judges</option>
+            <option value="ruth" data-chapters="4">Ruth</option>
+            <option value="1 samuel" data-chapters="31">1 Samuel</option>
+            <option value="2 samuel" data-chapters="24">2 Samuel</option>
+            <option value="1 kings" data-chapters="22">1 Kings</option>
+            <option value="2 kings" data-chapters="25">2 Kings</option>
+            <option value="1 chronicles" data-chapters="29">1 Chronicles</option>
+            <option value="2 chronicles" data-chapters="36">2 Chronicles</option>
+            <option value="ezra" data-chapters="10">Ezra</option>
+            <option value="nehemiah" data-chapters="13">Nehemiah</option>
+            <option value="esther" data-chapters="10">Esther</option>
+            <option value="job" data-chapters="42">Job</option>
+            <option value="psalms" data-chapters="150">Psalms</option>
+            <option value="proverbs" data-chapters="31">Proverbs</option>
+            <option value="ecclesiastes" data-chapters="12">Ecclesiastes</option>
+            <option value="song of solomon" data-chapters="8">Song of Solomon</option>
+            <option value="isaiah" data-chapters="66">Isaiah</option>
+            <option value="jeremiah" data-chapters="52">Jeremiah</option>
+            <option value="lamentations" data-chapters="5">Lamentations</option>
+            <option value="ezekiel" data-chapters="48">Ezekiel</option>
+            <option value="daniel" data-chapters="12">Daniel</option>
+            <option value="hosea" data-chapters="14">Hosea</option>
+            <option value="joel" data-chapters="3">Joel</option>
+            <option value="amos" data-chapters="9">Amos</option>
+            <option value="obadiah" data-chapters="1">Obadiah</option>
+            <option value="jonah" data-chapters="4">Jonah</option>
+            <option value="micah" data-chapters="7">Micah</option>
+            <option value="nahum" data-chapters="3">Nahum</option>
+            <option value="habakkuk" data-chapters="3">Habakkuk</option>
+            <option value="zephaniah" data-chapters="3">Zephaniah</option>
+            <option value="haggai" data-chapters="2">Haggai</option>
+            <option value="zechariah" data-chapters="14">Zechariah</option>
+            <option value="malachi" data-chapters="4">Malachi</option>
+          </optgroup>
+          <optgroup label="New Testament">
+            <option value="matthew" data-chapters="28">Matthew</option>
+            <option value="mark" data-chapters="16">Mark</option>
+            <option value="luke" data-chapters="24">Luke</option>
+            <option value="john" selected data-chapters="21">John</option>
+            <option value="acts" data-chapters="28">Acts</option>
+            <option value="romans" data-chapters="16">Romans</option>
+            <option value="1 corinthians" data-chapters="16">1 Corinthians</option>
+            <option value="2 corinthians" data-chapters="13">2 Corinthians</option>
+            <option value="galatians" data-chapters="6">Galatians</option>
+            <option value="ephesians" data-chapters="6">Ephesians</option>
+            <option value="philippians" data-chapters="4">Philippians</option>
+            <option value="colossians" data-chapters="4">Colossians</option>
+            <option value="1 thessalonians" data-chapters="5">1 Thessalonians</option>
+            <option value="2 thessalonians" data-chapters="3">2 Thessalonians</option>
+            <option value="1 timothy" data-chapters="6">1 Timothy</option>
+            <option value="2 timothy" data-chapters="4">2 Timothy</option>
+            <option value="titus" data-chapters="3">Titus</option>
+            <option value="philemon" data-chapters="1">Philemon</option>
+            <option value="hebrews" data-chapters="13">Hebrews</option>
+            <option value="james" data-chapters="5">James</option>
+            <option value="1 peter" data-chapters="5">1 Peter</option>
+            <option value="2 peter" data-chapters="3">2 Peter</option>
+            <option value="1 john" data-chapters="5">1 John</option>
+            <option value="2 john" data-chapters="1">2 John</option>
+            <option value="3 john" data-chapters="1">3 John</option>
+            <option value="jude" data-chapters="1">Jude</option>
+            <option value="revelation" data-chapters="22">Revelation</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="ctrl-group">
+        <label class="ctrl-label" for="chapterSelect">Chapter</label>
+        <select class="ctrl-select" id="chapterSelect"></select>
+      </div>
+      <div class="read-btn-wrap">
+        <label class="ctrl-label" style="opacity:0">Load</label>
+        <button class="btn-load" id="btnLoad">&#128278; Read Chapter</button>
+      </div>
+    </div>
+
+    <!-- Chapter Display -->
+    <div id="chapterDisplay">
+      <div class="reader-placeholder">
+        <div class="reader-placeholder-icon">&#128278;</div>
+        <p>Select a book and chapter above, then tap &ldquo;Read Chapter&rdquo; to begin reading the Word of God.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Verse Search -->
+<section id="verse-search">
+  <div class="container">
+    <div class="section-eyebrow centered reveal">Find a Verse</div>
+    <h2 class="display" style="text-align:center" class="reveal">Verse <em>Lookup</em></h2>
+    <div class="search-wrap">
+      <div class="search-input-row reveal">
+        <input
+          type="text"
+          class="verse-search-input"
+          id="verseSearchInput"
+          placeholder="e.g. John 3:16 or Philippians 4:13"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+        />
+        <button class="btn-search" id="btnVerseSearch">Look Up</button>
+      </div>
+      <p class="search-hint reveal">Enter a book name and chapter:verse &mdash; e.g. &ldquo;Romans 8:28&rdquo;</p>
+
+      <div class="search-result" id="searchResult">
+        <span class="search-result-ref" id="searchResultRef"></span>
+        <p class="search-result-text" id="searchResultText"></p>
+        <div class="search-result-actions">
+          <button class="dv-btn dv-btn-copy" id="btnCopySearch">&#128203; Copy Verse</button>
+          <button class="dv-btn dv-btn-read" id="btnReadSearch">Open in Reader &#8594;</button>
+        </div>
+      </div>
+
+      <div class="popular-verses reveal">
+        <div class="popular-label">Popular Verses</div>
+        <div class="popular-chips" id="popularChips"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plans / Connection -->
+<section id="bible-plans">
+  <div class="container">
+    <div class="section-eyebrow centered reveal">Grow in the Word</div>
+    <h2 class="display" style="text-align:center" class="reveal">Ways to <em>Engage</em></h2>
+    <div class="plans-grid">
+      <div class="plan-card reveal reveal-delay-1" onclick="window.location.href='sermons.html'">
+        <div class="plan-icon">&#127908;</div>
+        <div class="plan-title">Hear the Word Preached</div>
+        <p class="plan-desc">Watch our sermons and teachings to hear the scriptures brought to life through Spirit-filled messages.</p>
+      </div>
+      <div class="plan-card reveal reveal-delay-2" onclick="window.location.href='contact.html'">
+        <div class="plan-icon">&#127968;</div>
+        <div class="plan-title">Join Us in Person</div>
+        <p class="plan-desc">Come and experience the Word in community. Our services are every Sunday and Thursday in Nairobi.</p>
+      </div>
+      <div class="plan-card reveal reveal-delay-3" onclick="window.open('https://wa.me/254722830190','_blank')">
+        <div class="plan-icon">&#128172;</div>
+        <div class="plan-title">Daily Devotion on WhatsApp</div>
+        <p class="plan-desc">Receive daily scriptures and devotionals straight to your WhatsApp. Connect with us to join.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo"><div class="brand-icon-ft">&#10022;</div><span class="footer-brand-name">Jesus Victory Center</span></div>
+        <p class="footer-tagline">A Christ-centered church in Nairobi, Kenya &mdash; transforming lives through the grace of Jesus Christ.</p>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://www.facebook.com/groups/354397244397895/" target="_blank" rel="noopener">Facebook</a>
+          <a class="footer-social-link" href="https://youtube.com/@pererkarigih4282" target="_blank" rel="noopener">YouTube</a>
+          <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="bible.html">Holy Bible</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Ministries</h4>
+        <a href="children.html">Children</a>
+        <a href="worship.html">Worship</a>
+        <a href="daughters-of-zion.html">Daughters of Zion</a>
+        <a href="youth-teens.html">Youth &amp; Teens</a>
+        <a href="men-of-purpose.html">Men of Purpose</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://wa.me/254722830190">+254 722 830 190</a>
+        <p>Nairobi, Kenya</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Jesus Victory Center &middot; All Rights Reserved</p>
+      <span class="footer-love">Made with <span>&#9829;</span> for the Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Copy Toast -->
+<div class="copy-toast" id="copyToast">&#10003; Verse Copied</div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/254722830190?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Jesus%20Victory%20Center." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="script.js"></script>
+<script>
+'use strict';
+
+/* ── DAILY VERSE ── */
+const DAILY_POOL = [
+  { ref: 'john 3:16',           label: 'John 3:16' },
+  { ref: 'philippians 4:13',    label: 'Philippians 4:13' },
+  { ref: 'jeremiah 29:11',      label: 'Jeremiah 29:11' },
+  { ref: 'romans 8:28',         label: 'Romans 8:28' },
+  { ref: 'psalm 23:1',          label: 'Psalm 23:1' },
+  { ref: 'isaiah 40:31',        label: 'Isaiah 40:31' },
+  { ref: 'proverbs 3:5',        label: 'Proverbs 3:5' },
+  { ref: 'matthew 6:33',        label: 'Matthew 6:33' },
+  { ref: 'romans 10:9',         label: 'Romans 10:9' },
+  { ref: 'john 14:6',           label: 'John 14:6' },
+  { ref: 'psalm 46:1',          label: 'Psalm 46:1' },
+  { ref: 'ephesians 2:8',       label: 'Ephesians 2:8' },
+  { ref: '2 timothy 1:7',       label: '2 Timothy 1:7' },
+  { ref: 'romans 12:2',         label: 'Romans 12:2' },
+  { ref: 'john 16:33',          label: 'John 16:33' },
+  { ref: 'hebrews 11:1',        label: 'Hebrews 11:1' },
+  { ref: 'psalm 119:105',       label: 'Psalm 119:105' },
+  { ref: 'matthew 11:28',       label: 'Matthew 11:28' },
+  { ref: 'isaiah 41:10',        label: 'Isaiah 41:10' },
+  { ref: 'james 1:17',          label: 'James 1:17' },
+  { ref: 'galatians 5:22',      label: 'Galatians 5:22' },
+  { ref: 'psalm 91:1',          label: 'Psalm 91:1' },
+  { ref: '1 john 4:8',          label: '1 John 4:8' },
+  { ref: 'deuteronomy 31:6',    label: 'Deuteronomy 31:6' },
+  { ref: 'john 15:5',           label: 'John 15:5' },
+  { ref: 'colossians 3:23',     label: 'Colossians 3:23' },
+  { ref: 'psalm 37:4',          label: 'Psalm 37:4' },
+  { ref: 'romans 5:8',          label: 'Romans 5:8' },
+  { ref: '1 corinthians 13:4',  label: '1 Corinthians 13:4' },
+  { ref: 'genesis 1:1',         label: 'Genesis 1:1' },
+  { ref: 'john 8:32',           label: 'John 8:32' },
+  { ref: 'micah 6:8',           label: 'Micah 6:8' },
+  { ref: 'proverbs 31:25',      label: 'Proverbs 31:25' },
+  { ref: 'psalm 34:18',         label: 'Psalm 34:18' },
+  { ref: 'matthew 5:8',         label: 'Matthew 5:8' },
+  { ref: 'acts 1:8',            label: 'Acts 1:8' },
+  { ref: 'romans 1:16',         label: 'Romans 1:16' },
+  { ref: 'lamentations 3:22',   label: 'Lamentations 3:22' },
+  { ref: 'numbers 6:24',        label: 'Numbers 6:24' },
+  { ref: 'luke 1:37',           label: 'Luke 1:37' }
+];
+
+const POPULAR = [
+  { ref: 'John 3:16',          api: 'john 3:16' },
+  { ref: 'Psalm 23:1',         api: 'psalm 23:1' },
+  { ref: 'Isaiah 40:31',       api: 'isaiah 40:31' },
+  { ref: 'Philippians 4:13',   api: 'philippians 4:13' },
+  { ref: 'Jeremiah 29:11',     api: 'jeremiah 29:11' },
+  { ref: 'Romans 8:28',        api: 'romans 8:28' },
+  { ref: 'Proverbs 3:5-6',     api: 'proverbs 3:5-6' },
+  { ref: 'Hebrews 11:1',       api: 'hebrews 11:1' },
+  { ref: 'Matthew 6:33',       api: 'matthew 6:33' },
+  { ref: '2 Timothy 1:7',      api: '2 timothy 1:7' },
+  { ref: 'John 14:6',          api: 'john 14:6' },
+  { ref: 'Psalm 46:1',         api: 'psalm 46:1' }
+];
+
+function dayOfYear() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  return Math.floor((now - start) / 86400000);
+}
+
+async function fetchVerse(ref, translation = 'kjv') {
+  const encoded = encodeURIComponent(ref);
+  const url = `https://bible-api.com/${encoded}?translation=${translation}`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('API error');
+  return await r.json();
+}
+
+function showCopyToast(msg = '&#10003; Verse Copied') {
+  const t = document.getElementById('copyToast');
+  t.innerHTML = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+function copyText(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showCopyToast());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopyToast();
+  }
+}
+
+// Load daily verse
+(async function loadDailyVerse() {
+  const idx = dayOfYear() % DAILY_POOL.length;
+  const today = DAILY_POOL[idx];
+  const dvContent = document.getElementById('dvContent');
+
+  try {
+    const data = await fetchVerse(today.ref, 'kjv');
+    const text = data.text ? data.text.trim().replace(/\n/g, ' ') : '';
+    const ref = data.reference || today.label;
+    const fullText = `"${text}" — ${ref}`;
+
+    dvContent.innerHTML = `
+      <span class="dv-q">&ldquo;</span>
+      <p class="dv-text">${text}</p>
+      <span class="dv-ref">${ref} &mdash; KJV</span>
+      <div class="dv-actions">
+        <button class="dv-btn dv-btn-copy" id="btnDvCopy">&#128203; Copy Verse</button>
+        <button class="dv-btn dv-btn-read" id="btnDvRead">Read in Context &#8594;</button>
+      </div>
+    `;
+
+    document.getElementById('btnDvCopy').addEventListener('click', () => copyText(fullText));
+    document.getElementById('btnDvRead').addEventListener('click', () => {
+      document.getElementById('verse-search').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('verseSearchInput').value = today.label;
+    });
+  } catch (e) {
+    dvContent.innerHTML = `
+      <span class="dv-q">&ldquo;</span>
+      <p class="dv-text">For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</p>
+      <span class="dv-ref">John 3:16 &mdash; KJV</span>
+      <div class="dv-actions">
+        <button class="dv-btn dv-btn-copy" onclick="navigator.clipboard&&navigator.clipboard.writeText('&quot;For God so loved the world...&quot; John 3:16')">&#128203; Copy</button>
+      </div>
+    `;
+  }
+})();
+
+/* ── CHAPTER SELECT POPULATION ── */
+const bookSel = document.getElementById('bookSelect');
+const chapterSel = document.getElementById('chapterSelect');
+
+function populateChapters(total) {
+  chapterSel.innerHTML = '';
+  for (let i = 1; i <= total; i++) {
+    const o = document.createElement('option');
+    o.value = i;
+    o.textContent = i;
+    if (i === 1) o.selected = true;
+    chapterSel.appendChild(o);
+  }
+}
+
+function getSelectedBookChapters() {
+  const sel = bookSel.options[bookSel.selectedIndex];
+  return parseInt(sel.dataset.chapters || '1');
+}
+
+populateChapters(getSelectedBookChapters());
+bookSel.addEventListener('change', () => {
+  populateChapters(getSelectedBookChapters());
+});
+
+/* ── CHAPTER READER ── */
+let currentBook = 'john';
+let currentChapter = 1;
+let currentTrans = 'kjv';
+let totalChapters = 21;
+
+const btnLoad = document.getElementById('btnLoad');
+const chapterDisplay = document.getElementById('chapterDisplay');
+
+function getBookLabel() {
+  return bookSel.options[bookSel.selectedIndex].textContent;
+}
+
+function getTransLabel() {
+  const t = document.getElementById('transSelect');
+  return t.options[t.selectedIndex].textContent.split('—')[0].trim();
+}
+
+async function loadChapter(book, chapter, trans) {
+  currentBook = book;
+  currentChapter = chapter;
+  currentTrans = trans;
+  totalChapters = getSelectedBookChapters();
+
+  const bookLabel = getBookLabel();
+  const transLabel = getTransLabel();
+
+  btnLoad.disabled = true;
+  btnLoad.innerHTML = '<div class="dv-spinner" style="width:14px;height:14px;border-width:2px;margin:0 auto"></div>';
+
+  chapterDisplay.innerHTML = `
+    <div class="dv-loading" style="justify-content:center;padding:3rem 0">
+      <div class="dv-spinner"></div>
+      <span>Loading ${bookLabel} ${chapter}&hellip;</span>
+    </div>
+  `;
+
+  try {
+    const ref = `${book} ${chapter}`;
+    const data = await fetchVerse(ref, trans);
+
+    const verses = data.verses || [];
+    if (!verses.length) throw new Error('No verses');
+
+    let versesHTML = '';
+    verses.forEach((v, i) => {
+      const text = v.text.trim().replace(/\n/g, ' ');
+      const isFirst = i === 0;
+      versesHTML += `
+        <div class="verse-line" data-verse="${v.verse}" data-text="${v.verse}. ${text}">
+          <span class="verse-num">${v.verse}</span>
+          <span class="verse-text-content${isFirst ? ' first-verse' : ''}">${text}</span>
+        </div>
+      `;
+    });
+
+    const prevDisabled = chapter <= 1 ? 'disabled' : '';
+    const nextDisabled = chapter >= totalChapters ? 'disabled' : '';
+
+    chapterDisplay.innerHTML = `
+      <div class="chapter-wrap">
+        <div class="chapter-header">
+          <div class="chapter-title">${bookLabel} <span>Chapter ${chapter}</span></div>
+          <span class="chapter-translation">${transLabel}</span>
+        </div>
+        <div class="verses-container">${versesHTML}</div>
+        <div class="chapter-nav">
+          <button class="nav-btn" id="btnPrev" ${prevDisabled}>&#8592; Previous</button>
+          <span class="chapter-nav-info">${bookLabel} &middot; Chapter ${chapter} of ${totalChapters}</span>
+          <button class="nav-btn" id="btnNext" ${nextDisabled}>Next &#8594;</button>
+        </div>
+      </div>
+    `;
+
+    // Verse click to highlight & copy
+    document.querySelectorAll('.verse-line').forEach(line => {
+      line.addEventListener('click', () => {
+        document.querySelectorAll('.verse-line.highlighted').forEach(l => l.classList.remove('highlighted'));
+        line.classList.add('highlighted');
+        const verseNum = line.dataset.verse;
+        const text = line.querySelector('.verse-text-content').textContent.trim();
+        const fullRef = `${bookLabel} ${chapter}:${verseNum}`;
+        copyText(`"${text}" — ${fullRef} (${transLabel})`);
+      });
+    });
+
+    // Nav buttons
+    document.getElementById('btnPrev').addEventListener('click', () => {
+      if (currentChapter > 1) {
+        chapterSel.value = currentChapter - 1;
+        loadChapter(currentBook, currentChapter - 1, currentTrans);
+        chapterDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+    document.getElementById('btnNext').addEventListener('click', () => {
+      if (currentChapter < totalChapters) {
+        chapterSel.value = currentChapter + 1;
+        loadChapter(currentBook, currentChapter + 1, currentTrans);
+        chapterDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // Cursor hover for new verse lines
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    if (cursor && ring) {
+      document.querySelectorAll('.verse-line').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hov'); ring.classList.add('hov'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hov'); ring.classList.remove('hov'); });
+      });
+    }
+
+  } catch (e) {
+    chapterDisplay.innerHTML = `<div class="reader-error">&#9888; Could not load this passage. Please check your connection and try again.</div>`;
+  }
+
+  btnLoad.disabled = false;
+  btnLoad.innerHTML = '&#128278; Read Chapter';
+}
+
+btnLoad.addEventListener('click', () => {
+  const book = bookSel.value;
+  const chapter = parseInt(chapterSel.value);
+  const trans = document.getElementById('transSelect').value;
+  loadChapter(book, chapter, trans);
+  chapterDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* ── VERSE SEARCH ── */
+const verseSearchInput = document.getElementById('verseSearchInput');
+const searchResult = document.getElementById('searchResult');
+
+async function lookupVerse(rawRef) {
+  const ref = rawRef.trim();
+  if (!ref) return;
+
+  document.getElementById('btnVerseSearch').disabled = true;
+  document.getElementById('btnVerseSearch').textContent = '...';
+  searchResult.style.display = 'none';
+
+  try {
+    const data = await fetchVerse(ref, 'kjv');
+    const text = data.text ? data.text.trim().replace(/\n/g, ' ') : '';
+    const reference = data.reference || ref;
+
+    document.getElementById('searchResultRef').textContent = reference + ' — KJV';
+    document.getElementById('searchResultText').textContent = text;
+    searchResult.style.display = 'block';
+    searchResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    document.getElementById('btnCopySearch').onclick = () => {
+      copyText(`"${text}" — ${reference}`);
+    };
+    document.getElementById('btnReadSearch').onclick = () => {
+      // Parse book name and chapter from reference to open in reader
+      const match = reference.match(/^(.+?)\s+(\d+)/);
+      if (match) {
+        const bookName = match[1].toLowerCase();
+        const chap = parseInt(match[2]);
+        // Try to find the book in the select
+        const opts = Array.from(bookSel.options);
+        const found = opts.find(o => o.textContent.toLowerCase().startsWith(bookName));
+        if (found) {
+          bookSel.value = found.value;
+          populateChapters(parseInt(found.dataset.chapters));
+          chapterSel.value = chap;
+          document.getElementById('bible-reader').scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => {
+            loadChapter(found.value, chap, 'kjv');
+          }, 600);
+        }
+      }
+    };
+  } catch (e) {
+    searchResult.style.display = 'block';
+    document.getElementById('searchResultRef').textContent = 'Not Found';
+    document.getElementById('searchResultText').textContent = 'Could not find that reference. Try a format like "John 3:16" or "Psalm 23:1".';
+  }
+
+  document.getElementById('btnVerseSearch').disabled = false;
+  document.getElementById('btnVerseSearch').textContent = 'Look Up';
+}
+
+document.getElementById('btnVerseSearch').addEventListener('click', () => {
+  lookupVerse(verseSearchInput.value);
+});
+verseSearchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') lookupVerse(verseSearchInput.value);
+});
+
+/* ── POPULAR CHIPS ── */
+const chips = document.getElementById('popularChips');
+POPULAR.forEach(v => {
+  const chip = document.createElement('button');
+  chip.className = 'verse-chip';
+  chip.textContent = v.ref;
+  chip.addEventListener('click', () => {
+    verseSearchInput.value = v.ref;
+    lookupVerse(v.api);
+    document.getElementById('verse-search').scrollIntoView({ behavior: 'smooth' });
+  });
+  chips.appendChild(chip);
+});
+
+/* ── SCROLL REVEAL ── */
+const revealEls = document.querySelectorAll('.reveal');
+if (revealEls.length) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => obs.observe(el));
+}
+</script>
+
+</body>
+</html>
