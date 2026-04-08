@@ -16,7 +16,7 @@ body{background:#0A1628;color:rgba(255,255,255,.82);font-family:'Inter',sans-ser
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 button{cursor:pointer;font-family:inherit}
-:root{--gold:#c87820;--gold-pale:#e8a73c;--navy:#0A1628;--dark:#060e1a}
+:root{--gold:#E8720C;--gold-pale:#FBC97A;--navy:#0A1628;--dark:#060e1a;--amber:#E8720C;--amber-lt:#F4921E;--amber-pale:#FBC97A;--navy-2:#0D1E35;--navy-3:#112240;--steel:#1E3A5F;--slate:#2D4A6B;--text-dim:rgba(197,213,228,.52);--text-muted:rgba(139,164,190,.38);--border:rgba(139,164,190,.14);--border-amber:rgba(232,114,12,.28)}
 
 /* CURSOR */
 .cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999}
@@ -42,9 +42,9 @@ button{cursor:pointer;font-family:inherit}
 
 /* UMENU PANEL */
 .umenu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;opacity:0;pointer-events:none;transition:opacity .35s}
-.umenu-overlay.open{opacity:1;pointer-events:all}
+.umenu-overlay.active{opacity:1;pointer-events:all}
 .umenu-panel{position:fixed;top:0;right:0;width:min(420px,100vw);height:100dvh;background:#060e1a;border-left:1px solid rgba(200,120,32,.2);z-index:1001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .38s cubic-bezier(.22,1,.36,1);overflow:hidden}
-.umenu-panel.open{transform:translateX(0)}
+.umenu-panel.active{transform:translateX(0)}
 .umenu-header{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0}
 .umenu-brand{display:flex;align-items:center;gap:.6rem;font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.1em;color:rgba(255,255,255,.75)}
 .umenu-brand-icon{color:var(--gold);font-size:1rem}
@@ -254,10 +254,12 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 .reveal.left{transform:translateX(-24px)}
 .reveal.right{transform:translateX(24px)}
 .reveal.visible{opacity:1;transform:none}
+.progress-bar{position:fixed;top:0;left:0;z-index:9999;height:2px;width:0%;background:var(--gold,#E8720C);pointer-events:none;transition:width .1s linear}
 </style>
 </head>
 <body>
 
+<div class="progress-bar" id="progressBar"></div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -291,6 +293,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
       <a href="index.html" class="umenu-row active"><span class="umenu-row-icon">🏠</span><div class="umenu-row-text"><span class="umenu-row-title">Home</span><span class="umenu-row-desc">Welcome &amp; overview</span></div><span class="umenu-row-arrow">→</span></a>
       <a href="about.html" class="umenu-row"><span class="umenu-row-icon">✦</span><div class="umenu-row-text"><span class="umenu-row-title">About Us</span><span class="umenu-row-desc">Our story, mission &amp; vision</span></div><span class="umenu-row-arrow">→</span></a>
       <a href="sermons.html" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Sermons</span><span class="umenu-row-desc">Messages &amp; teachings</span></div><span class="umenu-row-arrow">→</span></a>
+      <a href="bible.html" class="umenu-row"><span class="umenu-row-icon">📖</span><div class="umenu-row-text"><span class="umenu-row-title">Holy Bible</span><span class="umenu-row-desc">Read the Word of God</span></div><span class="umenu-row-arrow">→</span></a>
       <a href="contact.html" class="umenu-row"><span class="umenu-row-icon">📍</span><div class="umenu-row-text"><span class="umenu-row-title">Contact &amp; Location</span><span class="umenu-row-desc">Find us in Nairobi</span></div><span class="umenu-row-arrow">→</span></a>
     </div>
     <div class="umenu-section">
@@ -335,6 +338,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
     <a href="sermons.html">Sermons</a>
+    <a href="bible.html">Bible</a>
     <a href="contact.html">Contact</a>
     <a href="contact.html" class="nav-give-btn">Give</a>
   </div>
@@ -565,7 +569,8 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
           <a class="footer-social-link" href="https://wa.me/254722830190" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
-      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="sermons.html">Sermons</a>
+    <a href="bible.html">Bible</a><a href="contact.html">Contact</a></div>
       <div class="footer-col"><h4>Ministries</h4><a href="children.html">Children</a><a href="worship.html">Worship</a><a href="daughters-of-zion.html">Daughters of Zion</a><a href="youth-teens.html">Youth &amp; Teens</a><a href="men-of-purpose.html">Men of Purpose</a></div>
       <div class="footer-col"><h4>Connect</h4><a href="mailto:jvcjesusvictory@gmail.com">jvcjesusvictory@gmail.com</a><a href="https://wa.me/254722830190">+254 722 830 190</a><p>Nairobi, Kenya</p></div>
     </div>
@@ -597,8 +602,8 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 // UMENU
 (function(){
   var trigger=document.getElementById('umenuTrigger'),panel=document.getElementById('umenuPanel'),overlay=document.getElementById('umenuOverlay'),close=document.getElementById('umenuClose');
-  function open(){panel.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
-  function shut(){panel.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+  function open(){panel.classList.add('active');overlay.classList.add('active');document.body.style.overflow='hidden';}
+  function shut(){panel.classList.remove('active');overlay.classList.remove('active');document.body.style.overflow='';}
   if(trigger)trigger.addEventListener('click',open);
   if(close)close.addEventListener('click',shut);
   if(overlay)overlay.addEventListener('click',shut);

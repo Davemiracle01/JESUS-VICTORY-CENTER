@@ -14,6 +14,10 @@
   --amber-lt:     #F4921E;
   --amber-pale:   #FBC97A;
   --amber-glow:   rgba(232,114,12,.18);
+  /* Legacy aliases — keep pages consistent */
+  --gold:         #E8720C;
+  --gold-pale:    #FBC97A;
+  --gold-dim:     rgba(232,114,12,.18);
   --grey-900:     #111827;
   --grey-700:     #374151;
   --grey-500:     #6B7280;
